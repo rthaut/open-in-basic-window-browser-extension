@@ -1,0 +1,11 @@
+{
+  "extensionName": {
+    "message": "Open in Basic Window"
+  },
+  "extensionDescription": {
+    "message": "Open links, media, tabs, frames, pages, and bookmarks in a basic popup window."
+  },
+  "menuOpenInBasicWindow": {
+    "message": "Open in Basic Window"
+  }
+}

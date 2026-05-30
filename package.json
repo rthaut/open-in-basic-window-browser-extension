@@ -1,0 +1,45 @@
+{
+  "name": "open-in-basic-window-browser-extension",
+  "title": "Open in Basic Window",
+  "version": "1.0.0",
+  "description": "Open links, media, tabs, frames, pages, and bookmarks in a simple popup browser window.",
+  "author": "Ryan Thaut <rthaut@gmail.com> (https://ryan.thaut.me)",
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rthaut/open-in-basic-window-browser-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rthaut/open-in-basic-window-browser-extension/issues"
+  },
+  "homepage": "https://github.com/rthaut/open-in-basic-window-browser-extension#readme",
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "edge-extension",
+    "firefox-extension",
+    "webextension",
+    "wxt"
+  ],
+  "private": true,
+  "packageManager": "npm@11.11.0",
+  "scripts": {
+    "dev": "wxt",
+    "dev:chrome": "wxt --browser chrome",
+    "dev:edge": "wxt --browser edge",
+    "dev:firefox": "wxt --browser firefox",
+    "build": "wxt build",
+    "build:chrome": "wxt build --browser chrome",
+    "build:edge": "wxt build --browser edge",
+    "build:firefox": "wxt build --browser firefox",
+    "zip": "wxt zip",
+    "zip:chrome": "wxt zip --browser chrome",
+    "zip:edge": "wxt zip --browser edge",
+    "zip:firefox": "wxt zip --browser firefox",
+    "compile": "wxt prepare && tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "wxt": "^0.20.8"
+  }
+}
