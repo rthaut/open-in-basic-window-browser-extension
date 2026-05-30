@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Test and build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run compile
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build Chrome extension
+        run: npm run build:chrome
+
+      - name: Build Edge extension
+        run: npm run build:edge
+
+      - name: Build Firefox extension
+        run: npm run build:firefox
