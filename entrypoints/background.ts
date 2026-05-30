@@ -24,7 +24,7 @@ type MenuApi = {
     id: string;
     title: string;
     contexts: MenuContext[];
-  }) => number | string;
+  }) => number | string | Promise<unknown>;
   removeAll: () => Promise<void>;
   onClicked: {
     addListener: (
@@ -52,10 +52,25 @@ async function createMenus() {
   const menuApi = getMenuApi();
   await menuApi.removeAll();
 
-  menuApi.create({
+  const contexts = getMenuContexts();
+
+  try {
+    await createMenuItem(menuApi, contexts);
+  } catch (error) {
+    if (!contexts.includes("tab")) throw error;
+
+    await createMenuItem(
+      menuApi,
+      contexts.filter((context) => context !== "tab"),
+    );
+  }
+}
+
+async function createMenuItem(menuApi: MenuApi, contexts: MenuContext[]) {
+  await menuApi.create({
     id: MENU_ID,
     title: browser.i18n.getMessage("menuOpenInBasicWindow"),
-    contexts: getMenuContexts(),
+    contexts,
   });
 }
 
