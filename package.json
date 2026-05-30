@@ -45,11 +45,13 @@
     "zip:edge": "wxt zip --browser edge",
     "prezip:firefox": "npm run generate:icons",
     "zip:firefox": "wxt zip --browser firefox",
-    "compile": "wxt prepare && tsc --noEmit"
+    "compile": "wxt prepare && tsc --noEmit",
+    "test": "vitest run --pool=threads"
   },
   "devDependencies": {
     "sharp": "^0.34.5",
     "typescript": "^5.9.3",
+    "vitest": "^4.1.7",
     "wxt": "^0.20.8"
   }
 }
