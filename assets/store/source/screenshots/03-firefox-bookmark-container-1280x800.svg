@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img">
+  <defs>
+    <linearGradient id="heroGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EFF6FF"/>
+      <stop offset="48%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CCFBF1"/>
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0F172A" flood-opacity="0.18"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="800" fill="url(#heroGradient)"/>
+
+    <text x="640" y="90" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="43" font-weight="800" fill="#172033" text-anchor="middle"><tspan x="640" dy="0">Firefox-ready bookmark and container support</tspan></text>
+    <text x="640" y="136" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="23" font-weight="500" fill="#334155" text-anchor="middle"><tspan x="640" dy="0">Open supported bookmarks and preserve container identity when Firefox</tspan><tspan x="640" dy="28.75">exposes it.</tspan></text>
+    <rect x="110" y="205" width="455" height="420" rx="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <text x="160" y="275" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#172033" text-anchor="start"><tspan x="160" dy="0">Bookmarks</tspan></text>
+
+    <rect x="142" y="296" width="360" height="62" rx="14" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2"/>
+    <circle cx="160" cy="320" r="11" fill="#2563EB"/>
+    <text x="188" y="318" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#172033" text-anchor="start"><tspan x="188" dy="0">Project docs</tspan></text>
+    <text x="188" y="344" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start"><tspan x="188" dy="0">https://example.com/docs</tspan></text>
+
+
+
+    <circle cx="160" cy="400" r="11" fill="#CBD5E1"/>
+    <text x="188" y="398" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#172033" text-anchor="start"><tspan x="188" dy="0">Reference page</tspan></text>
+    <text x="188" y="424" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start"><tspan x="188" dy="0">https://example.com/reference</tspan></text>
+
+
+
+    <circle cx="160" cy="480" r="11" fill="#CBD5E1"/>
+    <text x="188" y="478" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#172033" text-anchor="start"><tspan x="188" dy="0">Release checklist</tspan></text>
+    <text x="188" y="504" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start"><tspan x="188" dy="0">https://example.com/release</tspan></text>
+
+
+    <g filter="url(#cardShadow)">
+      <rect x="410" y="355" width="330" height="292" rx="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+
+
+    <text x="434" y="377" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#334155" text-anchor="start"><tspan x="434" dy="0">Back</tspan></text>
+
+
+
+    <text x="434" y="421" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#334155" text-anchor="start"><tspan x="434" dy="0">Reload</tspan></text>
+
+      <path d="M428 473H722" stroke="#E2E8F0"/>
+      <rect x="422" y="487" width="306" height="44" rx="10" fill="#DBEAFE" stroke="none" stroke-width="0"/>
+
+    <g transform="translate(434 493) scale(0.21875)">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="18" y="26" width="74" height="68" rx="10" fill="#F8FAFC" stroke="#FFFFFF" stroke-width="12"/>
+    <rect x="18" y="26" width="74" height="68" rx="10" fill="#F8FAFC" stroke="#172033" stroke-width="6"/>
+    <path d="M21 44h68" stroke="#172033" stroke-width="6"/>
+    <circle cx="34" cy="35" r="3.5" fill="#14B8A6" stroke="#172033" stroke-width="3"/>
+    <circle cx="47" cy="35" r="3.5" fill="#F59E0B" stroke="#172033" stroke-width="3"/>
+    <path d="M38 59h28" stroke="#94A3B8" stroke-width="6"/>
+    <path d="M38 74h18" stroke="#CBD5E1" stroke-width="6"/>
+    <path d="M61 80 101 40" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M79 39h23v23" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M61 80 101 40" stroke="#2563EB" stroke-width="10"/>
+    <path d="M79 39h23v23" stroke="#2563EB" stroke-width="10"/>
+  </g>
+</g>
+    <text x="476" y="517" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="476" dy="0">Open in Basic Window</tspan></text>
+
+      <path d="M428 549H722" stroke="#E2E8F0"/>
+
+
+    <text x="434" y="593" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#334155" text-anchor="start"><tspan x="434" dy="0">Copy link address</tspan></text>
+
+
+
+    <text x="434" y="637" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="500" fill="#334155" text-anchor="start"><tspan x="434" dy="0">Inspect</tspan></text>
+
+    </g>
+
+    <rect x="820" y="260" width="330" height="220" rx="24" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+    <text x="985" y="325" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="31" font-weight="800" fill="#172033" text-anchor="middle"><tspan x="985" dy="0">Container preserved</tspan></text>
+    <circle cx="985" cy="390" r="44" fill="#E0E7FF" stroke="#2563EB" stroke-width="5"/>
+    <text x="985" y="400" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="25" font-weight="800" fill="#2563EB" text-anchor="middle"><tspan x="985" dy="0">Work</tspan></text>
+    <text x="985" y="445" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="18" font-weight="500" fill="#334155" text-anchor="middle"><tspan x="985" dy="0">Firefox contextual identity</tspan></text>
+
+</svg>
