@@ -2,6 +2,8 @@
 
 A small WXT-powered Manifest V3 browser extension that adds a context-menu item for opening supported targets in a popup-style browser window.
 
+Chrome and Edge support links, images, videos, audio, frames, pages, and tabs. Firefox supports those contexts plus bookmarks.
+
 ## Supported Contexts
 
 - Links
@@ -11,7 +13,7 @@ A small WXT-powered Manifest V3 browser extension that adds a context-menu item 
 - Frames
 - Pages
 - Tabs
-- Bookmarks in Firefox
+- Firefox bookmarks
 
 Firefox builds preserve the source tab's contextual identity when the clicked item is tied to a tab and Firefox exposes a `cookieStoreId`. Chrome and Edge builds support the same tab/page/media/link/frame behavior, but do not support Firefox contextual identities.
 
@@ -23,7 +25,7 @@ This extension does not collect, store, transmit, or sell user data. All behavio
 
 - `contextMenus` / `menus`: Add the right-click menu item.
 - `tabs`: Read the source tab URL and preserve tab context when opening a popup window.
-- `bookmarks`: Resolve bookmark URLs when the browser provides bookmark context menu support.
+- `bookmarks` in Firefox: Resolve bookmark URLs for Firefox bookmark context-menu support.
 - `cookies` and `contextualIdentities` in Firefox: Preserve Firefox container identity for supported source tabs.
 
 ## Development
