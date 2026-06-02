@@ -12,7 +12,7 @@ Open in Basic Window is intentionally utility-focused and has no flashy in-exten
 - Capture the extension's strongest differentiators:
   - link/media/page/tab support
   - popup-style window result
-  - Firefox bookmark support
+  - Firefox-only bookmark support
   - Firefox container preservation
   - no-data, local-only privacy posture
 
@@ -43,7 +43,8 @@ Recommended:
 
 - Show the address bar.
 - Show tabs when they help explain the "source tab to popup window" flow.
-- Hide the bookmarks bar for Chrome and Edge screenshots unless the screenshot is specifically about bookmarks.
+- Hide the bookmarks bar for Chrome and Edge screenshots.
+- Use bookmark UI only in Firefox screenshots because bookmark context-menu support is Firefox-only.
 - Hide unrelated extension icons.
 - Use a clean browser profile with only Open in Basic Window installed/enabled.
 - Use light mode unless your store listing intentionally targets dark mode.
@@ -204,6 +205,7 @@ Setup:
 - Open the bookmarks toolbar or bookmarks sidebar.
 - Right-click a neutral bookmark.
 - Context menu shows "Open in Basic Window".
+- Do not stage bookmark screenshots in Chrome or Edge; those builds do not request the `bookmarks` permission or register the bookmark context.
 
 Recommended layout:
 
@@ -230,6 +232,7 @@ Setup:
 - Open a neutral page in that container.
 - Use Open in Basic Window from a supported tab/page/link context.
 - Capture the resulting popup window with the same container indicator visible.
+- Do not stage container-preservation screenshots in Chrome or Edge; those builds do not request `cookies` or `contextualIdentities`.
 
 Composition:
 
@@ -291,7 +294,8 @@ Use explicit names so store uploads are easy to select:
 ### Chrome
 
 - Use horizontal tabs.
-- Hide bookmarks bar unless needed.
+- Hide bookmarks bar; Chrome does not support the extension's bookmark context.
+- Avoid container-identity claims; Chrome does not support Firefox contextual identities.
 - Keep the toolbar minimal.
 - First screenshot should be context menu on a link or image.
 
@@ -299,6 +303,8 @@ Use explicit names so store uploads are easy to select:
 
 - Use horizontal tabs for the main screenshots.
 - Avoid vertical tabs unless creating an Edge-specific secondary screenshot.
+- Hide bookmarks bar; Edge does not support the extension's bookmark context.
+- Avoid container-identity claims; Edge does not support Firefox contextual identities.
 - Hide sidebar features if they distract from the extension behavior.
 - Keep shopping/sidebar/profile UI out of the capture.
 

@@ -77,19 +77,28 @@ const assets = [
     path: "promo/chrome-marquee-1400x560",
     width: 1400,
     height: 560,
-    svg: (w, h) => marqueePromo(w, h, "Chrome Web Store", palette.blue),
+    svg: (w, h) => marqueePromo(w, h, "Chrome Web Store", palette.blue, {
+      supportsBookmarks: false,
+      supportsContainers: false,
+    }),
   },
   {
     path: "promo/edge-marquee-1400x560",
     width: 1400,
     height: 560,
-    svg: (w, h) => marqueePromo(w, h, "Microsoft Edge Add-ons", palette.teal),
+    svg: (w, h) => marqueePromo(w, h, "Microsoft Edge Add-ons", palette.teal, {
+      supportsBookmarks: false,
+      supportsContainers: false,
+    }),
   },
   {
     path: "promo/firefox-marquee-1400x560",
     width: 1400,
     height: 560,
-    svg: (w, h) => marqueePromo(w, h, "Firefox Add-ons", palette.amber),
+    svg: (w, h) => marqueePromo(w, h, "Firefox Add-ons", palette.amber, {
+      supportsBookmarks: true,
+      supportsContainers: true,
+    }),
   },
 ];
 
@@ -392,7 +401,7 @@ function privacyScreenshot(width, height) {
     ${privacyCard(475, 330, "No servers", "Selected URLs are used locally only to open the popup window.", palette.teal)}
     ${privacyCard(815, 330, "No data sale", "No data is collected, shared, sold, or sent to third parties.", palette.amber)}
     ${roundedRect(250, 610, 780, 70, 35, "#FFFFFF", "#BFDBFE", 2)}
-    ${text({ value: "Permissions are used only for context menus, target resolution, popup windows, bookmarks, and Firefox containers.", x: 640, y: 640, size: 21, weight: 650, fill: palette.blueDark, anchor: "middle", maxWidth: 700, maxHeight: 54, maxLines: 2, id: "privacy permission pill" })}
+    ${text({ value: "Permissions are used only for context menus, target resolution, popup windows, and Firefox-only bookmarks/containers.", x: 640, y: 640, size: 21, weight: 650, fill: palette.blueDark, anchor: "middle", maxWidth: 700, maxHeight: 54, maxLines: 2, id: "privacy permission pill" })}
   `;
 }
 
@@ -422,7 +431,17 @@ function smallPromo(width, height, browserName, accent) {
   `;
 }
 
-function marqueePromo(width, height, storeName, accent) {
+function marqueePromo(
+  width,
+  height,
+  storeName,
+  accent,
+  { supportsBookmarks, supportsContainers },
+) {
+  const body = supportsBookmarks && supportsContainers
+    ? "Open links, media, tabs, frames, pages, and bookmarks, with Firefox container support."
+    : "Open links, media, tabs, frames, and pages in a basic popup window.";
+
   return `
     <rect width="${width}" height="${height}" fill="#0F172A"/>
     <circle cx="1200" cy="80" r="330" fill="${accent}" opacity="0.26"/>
@@ -430,7 +449,7 @@ function marqueePromo(width, height, storeName, accent) {
     ${roundedRect(80, 78, 1240, 404, 42, "#FFFFFF", "none", 0)}
     ${icon(132, 130, 168)}
     ${text({ value: "Open in Basic Window", x: 345, y: 178, size: 62, weight: 850, maxWidth: 820, maxLines: 1, id: `${storeName} marquee title` })}
-    ${text({ value: "Open links, media, tabs, frames, pages, and bookmarks in a basic popup window.", x: 350, y: 240, size: 29, weight: 600, fill: palette.slate, maxWidth: 720, maxHeight: 82, maxLines: 2, id: `${storeName} marquee body` })}
+    ${text({ value: body, x: 350, y: 240, size: 29, weight: 600, fill: palette.slate, maxWidth: 720, maxHeight: 82, maxLines: 2, id: `${storeName} marquee body` })}
     ${roundedRect(350, 324, 380, 72, 36, accent)}
     ${text({ value: "Context menu → popup", x: 540, y: 370, size: 27, weight: 800, fill: palette.white, anchor: "middle" })}
     ${roundedRect(768, 324, 265, 72, 36, "#F1F5F9", "#CBD5E1", 2)}

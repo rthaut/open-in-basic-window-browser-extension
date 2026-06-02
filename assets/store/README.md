@@ -34,7 +34,8 @@ Screenshots should show actual extension behavior:
 
 - Context menu with "Open in Basic Window".
 - Resulting popup-style browser window.
-- Representative link, image/media, page/tab, and Firefox bookmark behavior where practical.
+- Representative link, image/media, and page/tab behavior.
+- Firefox-only bookmark and container-preservation behavior where practical. Do not show bookmark context-menu support or container identity preservation in Chrome or Edge assets.
 
 Keep editable source files and exported images in this directory so future releases can update listing assets consistently.
 
@@ -55,6 +56,8 @@ Promotional images:
 - `promo/chrome-marquee-1400x560.png`
 - `promo/edge-marquee-1400x560.png`
 - `promo/firefox-marquee-1400x560.png`
+
+Chrome and Edge promotional images should describe link, media, tab, frame, and page support only. Firefox promotional images may also mention bookmarks and container-aware popup behavior.
 
 Editable SVG sources are stored under `source/` with matching names.
 

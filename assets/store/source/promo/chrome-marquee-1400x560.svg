@@ -39,7 +39,7 @@
   </g>
 </g>
     <text x="345" y="178" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="62" font-weight="850" fill="#172033" text-anchor="start"><tspan x="345" dy="0">Open in Basic Window</tspan></text>
-    <text x="350" y="240" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="29" font-weight="600" fill="#334155" text-anchor="start"><tspan x="350" dy="0">Open links, media, tabs, frames, pages, and</tspan><tspan x="350" dy="36.25">bookmarks in a basic popup window.</tspan></text>
+    <text x="350" y="240" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="29" font-weight="600" fill="#334155" text-anchor="start"><tspan x="350" dy="0">Open links, media, tabs, frames, and pages in a</tspan><tspan x="350" dy="36.25">basic popup window.</tspan></text>
     <rect x="350" y="324" width="380" height="72" rx="36" fill="#2563EB" stroke="none" stroke-width="0"/>
     <text x="540" y="370" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF" text-anchor="middle"><tspan x="540" dy="0">Context menu → popup</tspan></text>
     <rect x="768" y="324" width="265" height="72" rx="36" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2"/>
