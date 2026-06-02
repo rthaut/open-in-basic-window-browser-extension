@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560" role="img">
+  <defs>
+    <linearGradient id="heroGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EFF6FF"/>
+      <stop offset="48%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CCFBF1"/>
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0F172A" flood-opacity="0.18"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="560" fill="url(#heroGradient)"/>
+
+    <rect width="1400" height="560" fill="#0F172A"/>
+    <circle cx="1200" cy="80" r="330" fill="#14B8A6" opacity="0.26"/>
+    <circle cx="170" cy="520" r="280" fill="#14B8A6" opacity="0.22"/>
+    <rect x="80" y="78" width="1240" height="404" rx="42" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+    <g transform="translate(132 130) scale(1.3125)">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="18" y="26" width="74" height="68" rx="10" fill="#F8FAFC" stroke="#FFFFFF" stroke-width="12"/>
+    <rect x="18" y="26" width="74" height="68" rx="10" fill="#F8FAFC" stroke="#172033" stroke-width="6"/>
+    <path d="M21 44h68" stroke="#172033" stroke-width="6"/>
+    <circle cx="34" cy="35" r="3.5" fill="#14B8A6" stroke="#172033" stroke-width="3"/>
+    <circle cx="47" cy="35" r="3.5" fill="#F59E0B" stroke="#172033" stroke-width="3"/>
+    <path d="M38 59h28" stroke="#94A3B8" stroke-width="6"/>
+    <path d="M38 74h18" stroke="#CBD5E1" stroke-width="6"/>
+    <path d="M61 80 101 40" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M79 39h23v23" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M61 80 101 40" stroke="#2563EB" stroke-width="10"/>
+    <path d="M79 39h23v23" stroke="#2563EB" stroke-width="10"/>
+  </g>
+</g>
+    <text x="345" y="178" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="62" font-weight="850" fill="#172033" text-anchor="start"><tspan x="345" dy="0">Open in Basic Window</tspan></text>
+    <text x="350" y="240" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="29" font-weight="600" fill="#334155" text-anchor="start"><tspan x="350" dy="0">Open links, media, tabs, frames, and pages in a</tspan><tspan x="350" dy="36.25">basic popup window.</tspan></text>
+    <rect x="350" y="324" width="380" height="72" rx="36" fill="#14B8A6" stroke="none" stroke-width="0"/>
+    <text x="540" y="370" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF" text-anchor="middle"><tspan x="540" dy="0">Context menu → popup</tspan></text>
+    <rect x="768" y="324" width="265" height="72" rx="36" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="900" y="370" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="26" font-weight="800" fill="#172033" text-anchor="middle"><tspan x="900" dy="0">No data collection</tspan></text>
+    <text x="1180" y="430" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#64748B" text-anchor="middle"><tspan x="1180" dy="0">Microsoft Edge Add-ons</tspan></text>
+
+</svg>

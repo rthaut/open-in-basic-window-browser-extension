@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img">
+  <defs>
+    <linearGradient id="heroGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EFF6FF"/>
+      <stop offset="48%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CCFBF1"/>
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0F172A" flood-opacity="0.18"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="800" fill="url(#heroGradient)"/>
+
+    <text x="640" y="92" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="43" font-weight="800" fill="#172033" text-anchor="middle"><tspan x="640" dy="0">Open the target in a focused popup-style window</tspan></text>
+    <text x="640" y="137" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="23" font-weight="500" fill="#334155" text-anchor="middle"><tspan x="640" dy="0">A minimal separate window for the selected link, media item, page, frame, or</tspan><tspan x="640" dy="28.75">tab.</tspan></text>
+
+    <g filter="url(#softShadow)">
+      <rect x="92" y="205" width="470" height="420" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+      <rect x="92" y="205" width="470" height="62" rx="22" fill="#F1F5F9" stroke="none" stroke-width="0"/>
+      <path d="M92 267H562" stroke="#E2E8F0" stroke-width="2"/>
+      <circle cx="122" cy="236" r="8" fill="#EF4444"/>
+      <circle cx="148" cy="236" r="8" fill="#F59E0B"/>
+      <circle cx="174" cy="236" r="8" fill="#22C55E"/>
+      <rect x="210" y="221" width="320" height="30" rx="15" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="232" y="243" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start"><tspan x="232" dy="0">https://example.com</tspan></text>
+      <text x="128" y="315" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#172033" text-anchor="start"><tspan x="128" dy="0">Original tab</tspan></text>
+    </g>
+
+
+    <g filter="url(#softShadow)">
+      <rect x="654" y="166" width="530" height="500" rx="22" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+      <rect x="654" y="166" width="530" height="62" rx="22" fill="#F1F5F9" stroke="none" stroke-width="0"/>
+      <path d="M654 228H1184" stroke="#E2E8F0" stroke-width="2"/>
+      <circle cx="684" cy="197" r="8" fill="#EF4444"/>
+      <circle cx="710" cy="197" r="8" fill="#F59E0B"/>
+      <circle cx="736" cy="197" r="8" fill="#22C55E"/>
+      <rect x="772" y="182" width="380" height="30" rx="15" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="794" y="204" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="14" font-weight="500" fill="#64748B" text-anchor="start"><tspan x="794" dy="0">https://example.com/reference</tspan></text>
+      <text x="690" y="276" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#172033" text-anchor="start"><tspan x="690" dy="0">Basic popup window</tspan></text>
+    </g>
+
+    <path d="M580 405C625 405 625 405 658 405" stroke="#2563EB" stroke-width="10" stroke-linecap="round"/>
+    <path d="M640 377L668 405L640 433" fill="none" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="725" y="300" width="390" height="170" rx="18" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2"/>
+    <g transform="translate(755 332) scale(0.640625)">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="18" y="26" width="74" height="68" rx="10" fill="#F8FAFC" stroke="#FFFFFF" stroke-width="12"/>
+    <rect x="18" y="26" width="74" height="68" rx="10" fill="#F8FAFC" stroke="#172033" stroke-width="6"/>
+    <path d="M21 44h68" stroke="#172033" stroke-width="6"/>
+    <circle cx="34" cy="35" r="3.5" fill="#14B8A6" stroke="#172033" stroke-width="3"/>
+    <circle cx="47" cy="35" r="3.5" fill="#F59E0B" stroke="#172033" stroke-width="3"/>
+    <path d="M38 59h28" stroke="#94A3B8" stroke-width="6"/>
+    <path d="M38 74h18" stroke="#CBD5E1" stroke-width="6"/>
+    <path d="M61 80 101 40" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M79 39h23v23" stroke="#FFFFFF" stroke-width="18"/>
+    <path d="M61 80 101 40" stroke="#2563EB" stroke-width="10"/>
+    <path d="M79 39h23v23" stroke="#2563EB" stroke-width="10"/>
+  </g>
+</g>
+    <text x="860" y="362" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="28" font-weight="800" fill="#172033" text-anchor="start"><tspan x="860" dy="0">Focused popup</tspan></text>
+    <text x="860" y="403" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="21" font-weight="500" fill="#334155" text-anchor="start"><tspan x="860" dy="0">No new normal tab</tspan><tspan x="860" dy="26.25">required</tspan></text>
+
+</svg>
