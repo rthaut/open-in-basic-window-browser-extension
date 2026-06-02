@@ -13,8 +13,9 @@ export default defineConfig({
     permissions: [
       browser === "firefox" ? "menus" : "contextMenus",
       "tabs",
-      "bookmarks",
-      ...(browser === "firefox" ? ["cookies", "contextualIdentities"] : []),
+      ...(browser === "firefox"
+        ? ["bookmarks", "cookies", "contextualIdentities"]
+        : []),
     ],
     ...(browser === "firefox"
       ? {

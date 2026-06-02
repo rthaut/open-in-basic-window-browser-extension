@@ -2,7 +2,7 @@
   "name": "open-in-basic-window-browser-extension",
   "title": "Open in Basic Window",
   "version": "1.0.0",
-  "description": "Open links, media, tabs, frames, pages, and bookmarks in a simple popup browser window.",
+  "description": "Open links, media, tabs, frames, and pages in a simple popup browser window.",
   "author": "Ryan Thaut <rthaut@gmail.com> (https://ryan.thaut.me)",
   "license": "GPL-3.0-only",
   "repository": {
