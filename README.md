@@ -1,8 +1,12 @@
 # Open in Basic Window
 
-A small WXT-powered Manifest V3 browser extension that adds a context-menu item for opening supported targets in a popup-style browser window.
+<img src="assets/readme/hero-1676x720.png" alt="Open in Basic Window can open links, images, video, audio, frames, pages, tabs, bookmarks, and containers in a focused popup-style browser window." width="838">
 
-Chrome and Edge support links, images, videos, audio, frames, pages, and tabs. Firefox supports those contexts plus bookmarks and contextual (container) identities.
+Open in Basic Window gives your right-click menu a simple escape hatch: send the thing you selected into a focused popup-style browser window instead of another normal tab.
+
+It is handy for keeping a reference page beside your work, popping out media, separating a frame or page from a crowded tab strip, or opening a supported bookmark without rearranging your whole browser session. Everything runs locally in your browser, with no analytics, tracking, or data collection.
+
+Browser support varies by platform. Chrome and Edge support links, images, videos, audio, frames, pages, and tabs. Firefox supports those contexts plus bookmarks and contextual (container) identities.
 
 ## Supported Contexts
 

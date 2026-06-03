@@ -7,6 +7,8 @@ const STORE_DIR = resolve(ROOT, "assets/store");
 const SOURCE_DIR = resolve(STORE_DIR, "source");
 const SCREENSHOT_DIR = resolve(STORE_DIR, "screenshots");
 const PROMO_DIR = resolve(STORE_DIR, "promo");
+const README_DIR = resolve(ROOT, "assets/readme");
+const README_SOURCE_DIR = resolve(README_DIR, "source");
 
 const iconSource = await readFile(resolve(ROOT, "assets/icon.svg"), "utf8");
 const iconBody = iconSource
@@ -100,14 +102,22 @@ const assets = [
       supportsContainers: true,
     }),
   },
+  {
+    path: "hero-1676x720",
+    width: 1676,
+    height: 720,
+    svg: readmeHero,
+    sourceDir: README_SOURCE_DIR,
+    outputDir: README_DIR,
+  },
 ];
 
-await Promise.all([SOURCE_DIR, SCREENSHOT_DIR, PROMO_DIR].map(ensureDir));
+await Promise.all([SOURCE_DIR, SCREENSHOT_DIR, PROMO_DIR, README_SOURCE_DIR].map(ensureDir));
 
 for (const asset of assets) {
   const svg = baseSvg(asset.width, asset.height, asset.svg(asset.width, asset.height));
-  const sourcePath = resolve(SOURCE_DIR, `${asset.path}.svg`);
-  const pngPath = resolve(STORE_DIR, `${asset.path}.png`);
+  const sourcePath = resolve(asset.sourceDir ?? SOURCE_DIR, `${asset.path}.svg`);
+  const pngPath = resolve(asset.outputDir ?? STORE_DIR, `${asset.path}.png`);
 
   await ensureDir(dirname(sourcePath));
   await ensureDir(dirname(pngPath));
@@ -115,7 +125,7 @@ for (const asset of assets) {
   await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(pngPath);
 }
 
-console.log(`Generated ${assets.length} store assets in ${STORE_DIR}`);
+console.log(`Generated ${assets.length} assets in ${STORE_DIR} and ${README_DIR}`);
 if (fitWarnings.length) {
   console.warn(`Text fit warnings (${fitWarnings.length}):`);
   for (const warning of fitWarnings) console.warn(`- ${warning}`);
@@ -413,6 +423,79 @@ function privacyCard(x, y, title, body, accent) {
       <path d="M${x + 42} ${y + 56}L${x + 50} ${y + 64}L${x + 66} ${y + 45}" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       ${text({ value: title, x: x + 32, y: y + 110, size: 27, weight: 800 })}
       ${text({ value: body, x: x + 32, y: y + 145, size: 17, fill: palette.slate, maxWidth: 225, maxHeight: 60, maxLines: 3, id: `privacy card ${title}` })}
+    </g>
+  `;
+}
+
+function readmeHero(width, height) {
+  return `
+    <rect width="${width}" height="${height}" fill="#F8FAFC"/>
+    <rect x="0" y="0" width="${width}" height="${height}" fill="url(#heroGradient)"/>
+    <g opacity="0.42">
+      <circle cx="1460" cy="85" r="280" fill="${palette.blue}"/>
+      <circle cx="188" cy="690" r="250" fill="${palette.teal}"/>
+    </g>
+    ${roundedRect(72, 62, 1532, 596, 44, "#FFFFFF", "#D7E0EA", 2)}
+    ${icon(132, 124, 150)}
+    ${text({ value: "Open in Basic Window", x: 318, y: 174, size: 50, weight: 850, maxWidth: 570, maxLines: 1, id: "readme hero title" })}
+    ${text({ value: "Send the target you picked into a focused popup-style browser window.", x: 322, y: 224, size: 30, weight: 600, fill: palette.slate, maxWidth: 560, maxLines: 2, id: "readme hero tagline" })}
+    ${capabilityGrid(132, 374)}
+    ${heroWindowPair(910, 155)}
+  `;
+}
+
+function capabilityGrid(x, y) {
+  const items = [
+    ["Links", palette.blue],
+    ["Images", palette.teal],
+    ["Video", palette.amber],
+    ["Audio", palette.green],
+    ["Frames", "#8B5CF6"],
+    ["Pages", "#0EA5E9"],
+    ["Tabs", "#F97316"],
+    ["Bookmarks", "#EC4899"],
+    ["Containers", "#6366F1"],
+  ];
+
+  return items
+    .map(([label, accent], index) => {
+      const col = index % 3;
+      const row = Math.floor(index / 3);
+      return capabilityPill(x + col * 245, y + row * 74, label, accent);
+    })
+    .join("");
+}
+
+function capabilityPill(x, y, label, accent) {
+  return `
+    ${roundedRect(x, y, 210, 52, 26, "#FFFFFF", "#CBD5E1", 2)}
+    <circle cx="${x + 31}" cy="${y + 26}" r="13" fill="${accent}"/>
+    ${text({ value: label, x: x + 56, y: y + 34, size: 23, weight: 800, fill: palette.ink, maxWidth: 130, maxLines: 1, id: `readme capability ${label}` })}
+  `;
+}
+
+function heroWindowPair(x, y) {
+  return `
+    <g filter="url(#softShadow)">
+      ${roundedRect(x, y, 380, 305, 24, "#FFFFFF", "#D7E0EA", 2)}
+      ${roundedRect(x, y, 380, 55, 24, "#F1F5F9")}
+      <path d="M${x} ${y + 55}H${x + 380}" stroke="#D7E0EA" stroke-width="2"/>
+      <circle cx="${x + 28}" cy="${y + 28}" r="7" fill="#EF4444"/>
+      <circle cx="${x + 52}" cy="${y + 28}" r="7" fill="#F59E0B"/>
+      <circle cx="${x + 76}" cy="${y + 28}" r="7" fill="#22C55E"/>
+      ${roundedRect(x + 38, y + 92, 205, 34, 17, "#EFF6FF", "#93C5FD", 2)}
+      ${text({ value: "Selected target", x: x + 58, y: y + 116, size: 18, weight: 800, fill: palette.blueDark })}
+      ${contextMenu(x + 86, y + 142)}
+    </g>
+    <path d="M${x + 322} ${y + 318}C${x + 378} ${y + 382} ${x + 420} ${y + 382} ${x + 468} ${y + 318}" stroke="${palette.blue}" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M${x + 442} ${y + 313}L${x + 472} ${y + 318}L${x + 450} ${y + 339}" fill="none" stroke="${palette.blue}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+    <g filter="url(#cardShadow)">
+      ${roundedRect(x + 400, y + 250, 332, 240, 28, "#FFFFFF", "#D7E0EA", 2)}
+      ${roundedRect(x + 400, y + 250, 332, 52, 28, "#F1F5F9")}
+      <path d="M${x + 400} ${y + 302}H${x + 732}" stroke="#D7E0EA" stroke-width="2"/>
+      ${icon(x + 432, y + 334, 78)}
+      ${text({ value: "Focused popup", x: x + 532, y: y + 363, size: 28, weight: 850, maxWidth: 170, maxLines: 1, id: "readme popup title" })}
+      ${text({ value: "A cleaner place for the thing you opened.", x: x + 532, y: y + 405, size: 20, weight: 600, fill: palette.slate, maxWidth: 175, maxLines: 2, id: "readme popup body" })}
     </g>
   `;
 }
