@@ -6,6 +6,45 @@
     "message": "Open links, media, tabs, frames, and pages in a basic popup window."
   },
   "menuOpenInBasicWindow": {
-    "message": "Open in Basic Window"
+    "message": "Open $TARGET$ in Basic Window",
+    "description": "Context menu label. The target placeholder is the type of content that will be opened.",
+    "placeholders": {
+      "target": {
+        "content": "$1",
+        "example": "Link"
+      }
+    }
+  },
+  "menuTargetLink": {
+    "message": "Link",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetImage": {
+    "message": "Image",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetVideo": {
+    "message": "Video",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetAudio": {
+    "message": "Audio",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetFrame": {
+    "message": "Frame",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetPage": {
+    "message": "Page",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetTab": {
+    "message": "Tab",
+    "description": "Target content type shown in the context menu."
+  },
+  "menuTargetBookmark": {
+    "message": "Bookmark",
+    "description": "Target content type shown in the context menu."
   }
 }

@@ -12,10 +12,20 @@ const PAGE_CONTEXTS = [
 ] as const;
 const TAB_CONTEXTS = ["tab"] as const;
 const FIREFOX_ONLY_CONTEXTS = ["bookmark"] as const;
+const MENU_TARGET_MESSAGE_KEYS = {
+  link: "menuTargetLink",
+  image: "menuTargetImage",
+  video: "menuTargetVideo",
+  audio: "menuTargetAudio",
+  frame: "menuTargetFrame",
+  page: "menuTargetPage",
+  tab: "menuTargetTab",
+  bookmark: "menuTargetBookmark",
+} as const satisfies Record<MenuContext, string>;
 
 export type BrowserTarget = "chrome" | "edge" | "firefox" | string;
 export type MenuContext =
-  | `${Browser.contextMenus.ContextType}`
+  | (typeof PAGE_CONTEXTS)[number]
   | (typeof TAB_CONTEXTS)[number]
   | (typeof FIREFOX_ONLY_CONTEXTS)[number];
 export type MenuClickData = Omit<
@@ -86,16 +96,12 @@ export async function createMenus(
 
   const contexts = getMenuContexts(browserTarget);
 
-  try {
-    await createMenuItem(browserApi, menuApi, contexts);
-  } catch (error) {
-    if (!contexts.includes("tab")) throw error;
-
-    await createMenuItem(
-      browserApi,
-      menuApi,
-      contexts.filter((context) => context !== "tab"),
-    );
+  for (const context of contexts) {
+    try {
+      await createMenuItem(browserApi, menuApi, context);
+    } catch (error) {
+      if (context !== "tab") throw error;
+    }
   }
 }
 
@@ -104,9 +110,10 @@ export async function handleMenuClick(
   info: MenuClickData,
   tab?: SourceTab,
 ) {
-  if (info.menuItemId !== MENU_ID) return;
+  const menuTarget = getMenuTarget(info.menuItemId);
+  if (!menuTarget) return;
 
-  const url = await getTargetUrl(browserApi, info, tab);
+  const url = await getTargetUrl(browserApi, info, tab, menuTarget);
   if (!isOpenableUrl(url)) return;
 
   const createData: WindowCreateDataWithCookieStoreId = {
@@ -127,17 +134,29 @@ export async function getTargetUrl(
   browserApi: BrowserApi,
   info: MenuClickData,
   tab?: SourceTab,
+  menuTarget = getMenuTarget(info.menuItemId),
 ): Promise<string | undefined> {
-  if (info.linkUrl) return info.linkUrl;
-  if (info.srcUrl) return info.srcUrl;
-  if (info.frameUrl) return info.frameUrl;
-
-  if (info.bookmarkId) {
-    const [bookmark] = await browserApi.bookmarks.get(info.bookmarkId);
-    return bookmark.url;
+  switch (menuTarget) {
+    case "link":
+      return info.linkUrl;
+    case "image":
+    case "video":
+    case "audio":
+      return info.srcUrl;
+    case "frame":
+      return info.frameUrl;
+    case "bookmark": {
+      if (!info.bookmarkId) return undefined;
+      const [bookmark] = await browserApi.bookmarks.get(info.bookmarkId);
+      return bookmark.url;
+    }
+    case "page":
+      return info.pageUrl;
+    case "tab":
+      return tab?.url;
+    default:
+      return info.linkUrl ?? info.srcUrl ?? info.frameUrl ?? tab?.url ?? info.pageUrl;
   }
-
-  return tab?.url ?? info.pageUrl;
 }
 
 export async function getCookieStoreId(
@@ -170,13 +189,39 @@ export function getMenuContexts(browserTarget: BrowserTarget): MenuContext[] {
 function createMenuItem(
   browserApi: BrowserApi,
   menuApi: MenuApi,
-  contexts: MenuContext[],
+  context: MenuContext,
 ) {
   return menuApi.create({
-    id: MENU_ID,
-    title: browserApi.i18n.getMessage("menuOpenInBasicWindow"),
-    contexts,
+    id: getMenuItemId(context),
+    title: getMenuTitle(browserApi, context),
+    contexts: [context],
   });
+}
+
+export function getMenuItemId(context: MenuContext): string {
+  return `${MENU_ID}:${context}`;
+}
+
+export function getMenuTarget(menuItemId: unknown): MenuContext | undefined {
+  if (menuItemId === MENU_ID) return undefined;
+  if (typeof menuItemId !== "string") return undefined;
+
+  const context = menuItemId.slice(`${MENU_ID}:`.length);
+  if (menuItemId !== getMenuItemId(context as MenuContext)) return undefined;
+  if (!isMenuContext(context)) return undefined;
+
+  return context;
+}
+
+function getMenuTitle(browserApi: BrowserApi, context: MenuContext): string {
+  const targetName = browserApi.i18n.getMessage(
+    MENU_TARGET_MESSAGE_KEYS[context],
+  );
+  return browserApi.i18n.getMessage("menuOpenInBasicWindow", targetName);
+}
+
+function isMenuContext(context: string): context is MenuContext {
+  return context in MENU_TARGET_MESSAGE_KEYS;
 }
 
 function isOpenableUrl(url: string | undefined): url is string {

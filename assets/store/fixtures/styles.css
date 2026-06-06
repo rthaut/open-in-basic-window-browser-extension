@@ -107,6 +107,13 @@ img {
   width: 100%;
 }
 
+.image-link {
+  border-radius: 18px;
+  display: block;
+  outline: 3px solid #93c5fd;
+  outline-offset: 6px;
+}
+
 figcaption {
   color: #475569;
   font-size: 1rem;
