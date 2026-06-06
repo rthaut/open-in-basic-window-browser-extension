@@ -4,6 +4,8 @@ import {
   getCookieStoreId,
   getMenuApi,
   getMenuContexts,
+  getMenuItemId,
+  getMenuTarget,
   getTargetUrl,
   handleMenuClick,
   MENU_ID,
@@ -23,13 +25,27 @@ function createMenuApi(overrides: Partial<MenuApi> = {}): MenuApi {
 }
 
 function createBrowserApi(overrides: Partial<BrowserApi> = {}): BrowserApi {
+  const messages: Record<string, string> = {
+    menuOpenInBasicWindow: "Open $TARGET$ in Basic Window",
+    menuTargetLink: "Link",
+    menuTargetImage: "Image",
+    menuTargetVideo: "Video",
+    menuTargetAudio: "Audio",
+    menuTargetFrame: "Frame",
+    menuTargetPage: "Page",
+    menuTargetTab: "Tab",
+    menuTargetBookmark: "Bookmark",
+  };
+
   return {
     bookmarks: {
       get: vi.fn().mockResolvedValue([{ url: "https://bookmark.example/" }]),
     },
     contextMenus: createMenuApi(),
     i18n: {
-      getMessage: vi.fn().mockReturnValue("Open in Basic Window"),
+      getMessage: vi.fn((key: string, substitution?: string) =>
+        messages[key]?.replace("$TARGET$", substitution ?? "") ?? "",
+      ),
     },
     runtime: {
       onInstalled: { addListener: vi.fn() },
@@ -58,11 +74,26 @@ describe("background logic", () => {
     await createMenus(browserApi, "chrome");
 
     expect(browserApi.contextMenus.removeAll).toHaveBeenCalledOnce();
-    expect(browserApi.contextMenus.create).toHaveBeenCalledWith({
-      id: MENU_ID,
-      title: "Open in Basic Window",
-      contexts: ["link", "image", "video", "audio", "frame", "page", "tab"],
+    expect(browserApi.contextMenus.create).toHaveBeenCalledTimes(7);
+    expect(browserApi.contextMenus.create).toHaveBeenNthCalledWith(1, {
+      id: getMenuItemId("link"),
+      title: "Open Link in Basic Window",
+      contexts: ["link"],
     });
+    expect(browserApi.contextMenus.create).toHaveBeenNthCalledWith(5, {
+      id: getMenuItemId("frame"),
+      title: "Open Frame in Basic Window",
+      contexts: ["frame"],
+    });
+    expect(browserApi.contextMenus.create).toHaveBeenNthCalledWith(7, {
+      id: getMenuItemId("tab"),
+      title: "Open Tab in Basic Window",
+      contexts: ["tab"],
+    });
+    expect(browserApi.i18n.getMessage).toHaveBeenCalledWith(
+      "menuOpenInBasicWindow",
+      "Link",
+    );
   });
 
   it("adds bookmark context and prefers browser.menus for Firefox", async () => {
@@ -71,74 +102,79 @@ describe("background logic", () => {
 
     await createMenus(browserApi, "firefox");
 
-    expect(menus.create).toHaveBeenCalledWith({
-      id: MENU_ID,
-      title: "Open in Basic Window",
-      contexts: [
-        "link",
-        "image",
-        "video",
-        "audio",
-        "frame",
-        "page",
-        "tab",
-        "bookmark",
-      ],
+    expect(menus.create).toHaveBeenCalledTimes(8);
+    expect(menus.create).toHaveBeenLastCalledWith({
+      id: getMenuItemId("bookmark"),
+      title: "Open Bookmark in Basic Window",
+      contexts: ["bookmark"],
     });
     expect(browserApi.contextMenus.create).not.toHaveBeenCalled();
   });
 
-  it("retries menu creation without tab context for browsers that reject it", async () => {
-    const create = vi
-      .fn()
-      .mockRejectedValueOnce(new Error("unsupported context"))
-      .mockResolvedValueOnce(undefined);
+  it("skips tab menu creation for browsers that reject it", async () => {
+    const create = vi.fn((properties) => {
+      if (properties.contexts.includes("tab")) {
+        return Promise.reject(new Error("unsupported context"));
+      }
+
+      return Promise.resolve(undefined);
+    });
     const browserApi = createBrowserApi({
       contextMenus: createMenuApi({ create }),
     });
 
     await createMenus(browserApi, "chrome");
 
-    expect(create).toHaveBeenCalledTimes(2);
+    expect(create).toHaveBeenCalledTimes(7);
     expect(create).toHaveBeenLastCalledWith({
-      id: MENU_ID,
-      title: "Open in Basic Window",
-      contexts: ["link", "image", "video", "audio", "frame", "page"],
+      id: getMenuItemId("tab"),
+      title: "Open Tab in Basic Window",
+      contexts: ["tab"],
     });
   });
 
-  it("selects the target URL using the extension priority order", async () => {
+  it("selects the target URL using the selected menu target", async () => {
     const browserApi = createBrowserApi();
 
     await expect(
       getTargetUrl(browserApi, {
-        menuItemId: MENU_ID,
+        menuItemId: getMenuItemId("link"),
         linkUrl: "https://link.example/",
         srcUrl: "https://image.example/",
       }),
     ).resolves.toBe("https://link.example/");
     await expect(
       getTargetUrl(browserApi, {
-        menuItemId: MENU_ID,
+        menuItemId: getMenuItemId("image"),
+        linkUrl: "https://link.example/",
         srcUrl: "https://image.example/",
       }),
     ).resolves.toBe("https://image.example/");
     await expect(
       getTargetUrl(browserApi, {
-        menuItemId: MENU_ID,
+        menuItemId: getMenuItemId("frame"),
         frameUrl: "https://frame.example/",
       }),
     ).resolves.toBe("https://frame.example/");
     await expect(
-      getTargetUrl(browserApi, { menuItemId: MENU_ID, bookmarkId: "abc123" }),
+      getTargetUrl(browserApi, {
+        menuItemId: getMenuItemId("bookmark"),
+        bookmarkId: "abc123",
+      }),
     ).resolves.toBe("https://bookmark.example/");
     await expect(
       getTargetUrl(
         browserApi,
-        { menuItemId: MENU_ID, pageUrl: "https://page.example/" },
+        { menuItemId: getMenuItemId("tab"), pageUrl: "https://page.example/" },
         { url: "https://tab.example/" },
       ),
     ).resolves.toBe("https://tab.example/");
+    await expect(
+      getTargetUrl(browserApi, {
+        menuItemId: getMenuItemId("page"),
+        pageUrl: "https://page.example/",
+      }),
+    ).resolves.toBe("https://page.example/");
   });
 
   it("opens supported URLs in focused popup windows", async () => {
@@ -146,7 +182,10 @@ describe("background logic", () => {
 
     await handleMenuClick(
       browserApi,
-      { menuItemId: MENU_ID, linkUrl: "https://target.example/" },
+      {
+        menuItemId: getMenuItemId("link"),
+        linkUrl: "https://target.example/",
+      },
       { id: 7, url: "https://tab.example/" },
     );
 
@@ -162,7 +201,7 @@ describe("background logic", () => {
     const browserApi = createBrowserApi();
 
     await handleMenuClick(browserApi, {
-      menuItemId: MENU_ID,
+      menuItemId: getMenuItemId("link"),
       linkUrl: "chrome://extensions",
     });
     await handleMenuClick(browserApi, {
@@ -177,7 +216,7 @@ describe("background logic", () => {
     const browserApi = createBrowserApi();
 
     await handleMenuClick(browserApi, {
-      menuItemId: MENU_ID,
+      menuItemId: getMenuItemId("bookmark"),
       bookmarkId: "abc123",
     });
 
@@ -214,5 +253,8 @@ describe("background logic", () => {
     const menus = createMenuApi();
     const browserApi = createBrowserApi({ menus });
     expect(getMenuApi(browserApi)).toBe(menus);
+    expect(getMenuItemId("link")).toBe(`${MENU_ID}:link`);
+    expect(getMenuTarget(`${MENU_ID}:link`)).toBe("link");
+    expect(getMenuTarget(`${MENU_ID}:unknown`)).toBeUndefined();
   });
 });

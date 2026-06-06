@@ -2,7 +2,7 @@
 
 Use this guide if browser stores require literal screenshots, or if you want to supplement the generated assets in `assets/store/` with real captures.
 
-Open in Basic Window is intentionally utility-focused and has no flashy in-extension UI. Good screenshots should therefore make the workflow obvious: **right-click a supported target, choose "Open in Basic Window", and see the target open in a focused popup-style window.**
+Open in Basic Window is intentionally utility-focused and has no flashy in-extension UI. Good screenshots should therefore make the workflow obvious: **right-click a supported target, choose the matching "Open [Target] in Basic Window" menu item, and see the target open in a focused popup-style window.**
 
 ## Goals
 
@@ -113,7 +113,7 @@ Setup:
 - One clean page with a prominent link.
 - Right-click the link.
 - Place the context menu near the link, not covering the page title.
-- Ensure "Open in Basic Window" is visible and highlighted if the browser supports hover highlighting.
+- Ensure "Open Link in Basic Window" is visible and highlighted if the browser supports hover highlighting.
 
 Composition:
 
@@ -166,7 +166,7 @@ Setup:
 
 - Page contains a large image or media placeholder.
 - Right-click image/video/audio.
-- Context menu shows "Open in Basic Window".
+- Context menu shows the matching image, video, or audio menu item.
 
 Composition:
 
@@ -204,7 +204,7 @@ Setup:
 - Firefox only.
 - Open the bookmarks toolbar or bookmarks sidebar.
 - Right-click a neutral bookmark.
-- Context menu shows "Open in Basic Window".
+- Context menu shows "Open Bookmark in Basic Window".
 - Do not stage bookmark screenshots in Chrome or Edge; those builds do not request the `bookmarks` permission or register the bookmark context.
 
 Recommended layout:
@@ -319,7 +319,7 @@ Use explicit names so store uploads are easy to select:
 
 Before uploading:
 
-- The "Open in Basic Window" menu item is readable.
+- The target-specific "Open [Target] in Basic Window" menu item is readable.
 - The selected target is obvious.
 - The popup-style result is visibly separate from the source window.
 - No personal data is visible.

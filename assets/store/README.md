@@ -32,7 +32,7 @@ Related capture workflow:
 
 Screenshots should show actual extension behavior:
 
-- Context menu with "Open in Basic Window".
+- Context menu with the target-specific "Open [Target] in Basic Window" item.
 - Resulting popup-style browser window.
 - Representative link, image/media, and page/tab behavior.
 - Firefox-only bookmark and container-preservation behavior where practical. Do not show bookmark context-menu support or container identity preservation in Chrome or Edge assets.
