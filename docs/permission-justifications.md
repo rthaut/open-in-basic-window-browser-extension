@@ -14,7 +14,7 @@ Because of that support split, Chrome and Edge builds request only `contextMenus
 
 ## `contextMenus` / `menus`
 
-Required to add the "Open in Basic Window" item to browser context menus. Firefox exposes this API as `menus`; Chrome and Edge expose it as `contextMenus`.
+Required to add the target-specific "Open [Target] in Basic Window" items to browser context menus. Firefox exposes this API as `menus`; Chrome and Edge expose it as `contextMenus`.
 
 ## `tabs`
 

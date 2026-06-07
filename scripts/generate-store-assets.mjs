@@ -34,7 +34,7 @@ const palette = {
 
 const assets = [
   {
-    path: "screenshots/01-context-menu-link-1280x800",
+    path: "screenshots/01-context-menu-target-1280x800",
     width: 1280,
     height: 800,
     svg: contextMenuScreenshot,
@@ -321,7 +321,11 @@ function browserWindow(x, y, width, height, { title = "Example Page", url = "htt
   `;
 }
 
-function contextMenu(x, y, highlighted = true) {
+function contextMenu(x, y, highlighted = true, target) {
+  const label = target
+    ? `Open ${target} in Basic Window`
+    : "Open in Basic Window";
+
   return `
     <g filter="url(#cardShadow)">
       ${roundedRect(x, y, 330, 292, 16, "#FFFFFF", "#CBD5E1", 1)}
@@ -329,7 +333,7 @@ function contextMenu(x, y, highlighted = true) {
       ${menuItem(x, y + 66, "Reload", false)}
       <path d="M${x + 18} ${y + 118}H${x + 312}" stroke="#E2E8F0"/>
       ${highlighted ? roundedRect(x + 12, y + 132, 306, 44, 10, "#DBEAFE") : ""}
-      ${menuItem(x, y + 162, "Open in Basic Window", true)}
+      ${menuItem(x, y + 162, label, true)}
       <path d="M${x + 18} ${y + 194}H${x + 312}" stroke="#E2E8F0"/>
       ${menuItem(x, y + 238, "Copy link address", false)}
       ${menuItem(x, y + 282, "Inspect", false)}
@@ -384,7 +388,7 @@ function firefoxBookmarkScreenshot(width, height) {
     ${bookmarkRow(160, 330, "Project docs", "https://example.com/docs", true)}
     ${bookmarkRow(160, 410, "Reference page", "https://example.com/reference", false)}
     ${bookmarkRow(160, 490, "Release checklist", "https://example.com/release", false)}
-    ${contextMenu(410, 355)}
+    ${contextMenu(410, 355, true, "Bookmark")}
     ${roundedRect(820, 260, 330, 220, 24, "#FFFFFF", "#E2E8F0", 2)}
     ${text({ value: "Container preserved", x: 985, y: 325, size: 31, weight: 800, anchor: "middle" })}
     <circle cx="985" cy="390" r="44" fill="#E0E7FF" stroke="${palette.blue}" stroke-width="5"/>

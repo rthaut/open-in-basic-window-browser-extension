@@ -32,7 +32,7 @@ Related capture workflow:
 
 Screenshots should show actual extension behavior:
 
-- Context menu with the target-specific "Open [Target] in Basic Window" item.
+- Context menu with the extension action; literal captures should show the target-specific "Open [Target] in Basic Window" item.
 - Resulting popup-style browser window.
 - Representative link, image/media, and page/tab behavior.
 - Firefox-only bookmark and container-preservation behavior where practical. Do not show bookmark context-menu support or container identity preservation in Chrome or Edge assets.
@@ -43,7 +43,7 @@ Keep editable source files and exported images in this directory so future relea
 
 Screenshots:
 
-- `screenshots/01-context-menu-link-1280x800.png`
+- `screenshots/01-context-menu-target-1280x800.png`
 - `screenshots/02-popup-window-result-1280x800.png`
 - `screenshots/03-firefox-bookmark-container-1280x800.png`
 - `screenshots/04-local-privacy-1280x800.png`

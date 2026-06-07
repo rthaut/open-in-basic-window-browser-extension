@@ -70,7 +70,7 @@
     <path d="M79 39h23v23" stroke="#2563EB" stroke-width="10"/>
   </g>
 </g>
-    <text x="476" y="517" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="476" dy="0">Open in Basic Window</tspan></text>
+    <text x="476" y="517" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#1E3A8A" text-anchor="start"><tspan x="476" dy="0">Open Bookmark in Basic Window</tspan></text>
 
       <path d="M428 549H722" stroke="#E2E8F0"/>
 
