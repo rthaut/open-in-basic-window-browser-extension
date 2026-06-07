@@ -2,7 +2,7 @@
 
 Durable source and exported assets for browser-store listings.
 
-Generate the editable SVG sources and exported PNGs with:
+Generate the editable promo image and README hero sources/exports with:
 
 ```sh
 npm run generate:store-assets
@@ -30,23 +30,38 @@ Related capture workflow:
 
 ## Screenshot Guidance
 
-Screenshots should show actual extension behavior:
+Screenshots should be real browser captures stored under browser-specific folders in `screenshots/`. They should show actual extension behavior:
 
 - Context menu with the extension action; literal captures should show the target-specific "Open [Target] in Basic Window" item.
 - Resulting popup-style browser window.
 - Representative link, image/media, and page/tab behavior.
 - Firefox-only bookmark and container-preservation behavior where practical. Do not show bookmark context-menu support or container identity preservation in Chrome or Edge assets.
 
-Keep editable source files and exported images in this directory so future releases can update listing assets consistently.
+Keep captured screenshots in browser-specific folders so future releases can update store listings consistently.
+
+## Captured Screenshots
+
+Chrome:
+
+- `screenshots/chrome/01-chrome-link-1280x800.png`
+- `screenshots/chrome/02-chrome-popup-window.png`
+- `screenshots/chrome/03-chrome-image-1280x800.png`
+
+Microsoft Edge:
+
+- `screenshots/edge/01-edge-link-1280x800.png`
+- `screenshots/edge/02-edge-popup-window-result.png`
+- `screenshots/edge/03-edge-image-1280x800.png`
+
+Firefox:
+
+- `screenshots/firefox/01-firefox-link-1280x800.png`
+- `screenshots/firefox/02-firefox-popup-window-result.png`
+- `screenshots/firefox/03-firefox-image-1280x800.png`
+- `screenshots/firefox/04-firefox-tab-1280x800.png`
+- `screenshots/firefox/05-firefox-bookmark-1280x800.png`
 
 ## Generated Asset Pack
-
-Screenshots:
-
-- `screenshots/01-context-menu-target-1280x800.png`
-- `screenshots/02-popup-window-result-1280x800.png`
-- `screenshots/03-firefox-bookmark-container-1280x800.png`
-- `screenshots/04-local-privacy-1280x800.png`
 
 Promotional images:
 
@@ -63,7 +78,7 @@ Editable SVG sources are stored under `source/` with matching names.
 
 ## Notes
 
-- These are polished listing assets generated from the extension's real icon and documented behavior.
-- If a store reviewer requires literal browser captures instead of designed screenshots, replace or supplement these with real captures before submission.
+- Promo images and the README hero are polished generated assets built from the extension's real icon and documented behavior.
+- Store screenshots should be captured from real browser UI rather than generated.
 - Re-run `npm run generate:store-assets` after changing the icon, listing copy, or asset layout script.
 - The generator wraps and scales annotated text blocks to avoid obvious text overflow. Use `npm run check:store-assets` after copy or layout changes.

@@ -1,6 +1,6 @@
 # Screenshot Capture Guide
 
-Use this guide if browser stores require literal screenshots, or if you want to supplement the generated assets in `assets/store/` with real captures.
+Use this guide when capturing browser-store screenshots. Store screenshots should be taken from real browser UI, while generated assets are reserved for promo images and the README hero.
 
 Open in Basic Window is intentionally utility-focused and has no flashy in-extension UI. Good screenshots should therefore make the workflow obvious: **right-click a supported target, choose the matching "Open [Target] in Basic Window" menu item, and see the target open in a focused popup-style window.**
 
@@ -274,20 +274,20 @@ If the store allows designed screenshots, you can combine literal captures with 
 7. Stage the context menu or popup window.
 8. Capture the screenshot as PNG.
 9. Crop/export to final dimensions if needed.
-10. Save final PNGs in `assets/store/screenshots/real/` or another clearly named folder.
-11. Keep any source files or raw captures in `assets/store/source/real/`.
+10. Save final PNGs in the appropriate browser-specific folder under `assets/store/screenshots/`.
+11. Keep any source files or raw captures outside the generated asset source tree.
 12. Verify the screenshot at thumbnail size.
 
 ## Suggested File Names
 
 Use explicit names so store uploads are easy to select:
 
-- `real/01-chrome-context-menu-link-1280x800.png`
-- `real/02-chrome-popup-result-1280x800.png`
-- `real/03-chrome-media-target-1280x800.png`
-- `real/04-edge-popup-result-1280x800.png`
-- `real/05-firefox-bookmark-menu-1280x800.png`
-- `real/06-firefox-container-popup-1280x800.png`
+- `chrome/01-chrome-context-menu-link-1280x800.png`
+- `chrome/02-chrome-popup-result-1280x800.png`
+- `chrome/03-chrome-media-target-1280x800.png`
+- `edge/01-edge-context-menu-link-1280x800.png`
+- `edge/02-edge-popup-result-1280x800.png`
+- `firefox/05-firefox-bookmark-menu-1280x800.png`
 
 ## Per-Browser Notes
 
@@ -329,17 +329,12 @@ Before uploading:
 - Store-specific size and content requirements are satisfied.
 - Browser-specific screenshots do not imply unsupported behavior in another browser.
 
-## When To Use Generated Assets Instead
+## Generated Assets
 
-The generated assets in `assets/store/` are useful when:
+The generated assets in `assets/store/` are useful for promo images when:
 
 - A store allows designed marketing images.
-- Native context menus are hard to capture consistently.
 - You need polished promotional images in exact dimensions.
 - You want a privacy or feature-summary image that is clearer than raw browser UI.
 
-Use real screenshots when:
-
-- A store requires literal captures.
-- You want to prove exact browser UI behavior.
-- Review feedback asks for actual screenshots.
+Do not use generated images as store screenshots. Use real screenshots when showing extension behavior, native context menus, popup windows, bookmarks, or browser-specific UI.
