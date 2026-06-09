@@ -5,8 +5,9 @@ import sharp from "sharp";
 const ROOT = resolve(".");
 const STORE_DIR = resolve(ROOT, "assets/store");
 const SOURCE_DIR = resolve(STORE_DIR, "source");
-const SCREENSHOT_DIR = resolve(STORE_DIR, "screenshots");
 const PROMO_DIR = resolve(STORE_DIR, "promo");
+const README_DIR = resolve(ROOT, "assets/readme");
+const README_SOURCE_DIR = resolve(README_DIR, "source");
 
 const iconSource = await readFile(resolve(ROOT, "assets/icon.svg"), "utf8");
 const iconBody = iconSource
@@ -31,30 +32,6 @@ const palette = {
 };
 
 const assets = [
-  {
-    path: "screenshots/01-context-menu-link-1280x800",
-    width: 1280,
-    height: 800,
-    svg: contextMenuScreenshot,
-  },
-  {
-    path: "screenshots/02-popup-window-result-1280x800",
-    width: 1280,
-    height: 800,
-    svg: popupResultScreenshot,
-  },
-  {
-    path: "screenshots/03-firefox-bookmark-container-1280x800",
-    width: 1280,
-    height: 800,
-    svg: firefoxBookmarkScreenshot,
-  },
-  {
-    path: "screenshots/04-local-privacy-1280x800",
-    width: 1280,
-    height: 800,
-    svg: privacyScreenshot,
-  },
   {
     path: "promo/chrome-small-440x280",
     width: 440,
@@ -100,14 +77,22 @@ const assets = [
       supportsContainers: true,
     }),
   },
+  {
+    path: "hero-1676x720",
+    width: 1676,
+    height: 720,
+    svg: readmeHero,
+    sourceDir: README_SOURCE_DIR,
+    outputDir: README_DIR,
+  },
 ];
 
-await Promise.all([SOURCE_DIR, SCREENSHOT_DIR, PROMO_DIR].map(ensureDir));
+await Promise.all([SOURCE_DIR, PROMO_DIR, README_SOURCE_DIR].map(ensureDir));
 
 for (const asset of assets) {
   const svg = baseSvg(asset.width, asset.height, asset.svg(asset.width, asset.height));
-  const sourcePath = resolve(SOURCE_DIR, `${asset.path}.svg`);
-  const pngPath = resolve(STORE_DIR, `${asset.path}.png`);
+  const sourcePath = resolve(asset.sourceDir ?? SOURCE_DIR, `${asset.path}.svg`);
+  const pngPath = resolve(asset.outputDir ?? STORE_DIR, `${asset.path}.png`);
 
   await ensureDir(dirname(sourcePath));
   await ensureDir(dirname(pngPath));
@@ -115,7 +100,7 @@ for (const asset of assets) {
   await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(pngPath);
 }
 
-console.log(`Generated ${assets.length} store assets in ${STORE_DIR}`);
+console.log(`Generated ${assets.length} assets in ${STORE_DIR} and ${README_DIR}`);
 if (fitWarnings.length) {
   console.warn(`Text fit warnings (${fitWarnings.length}):`);
   for (const warning of fitWarnings) console.warn(`- ${warning}`);
@@ -295,22 +280,6 @@ function roundedRect(x, y, width, height, radius, fill, stroke = "none", strokeW
   return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/>`;
 }
 
-function browserWindow(x, y, width, height, { title = "Example Page", url = "https://example.com/article", fill = palette.white } = {}) {
-  return `
-    <g filter="url(#softShadow)">
-      ${roundedRect(x, y, width, height, 22, fill, "#E2E8F0", 2)}
-      ${roundedRect(x, y, width, 62, 22, "#F1F5F9")}
-      <path d="M${x} ${y + 62}H${x + width}" stroke="#E2E8F0" stroke-width="2"/>
-      <circle cx="${x + 30}" cy="${y + 31}" r="8" fill="#EF4444"/>
-      <circle cx="${x + 56}" cy="${y + 31}" r="8" fill="#F59E0B"/>
-      <circle cx="${x + 82}" cy="${y + 31}" r="8" fill="#22C55E"/>
-      ${roundedRect(x + 118, y + 16, width - 150, 30, 15, "#FFFFFF", "#CBD5E1", 1)}
-      ${text({ value: url, x: x + 140, y: y + 38, size: 14, fill: palette.muted })}
-      ${text({ value: title, x: x + 36, y: y + 110, size: 28, weight: 700 })}
-    </g>
-  `;
-}
-
 function contextMenu(x, y, highlighted = true) {
   return `
     <g filter="url(#cardShadow)">
@@ -334,85 +303,75 @@ function menuItem(x, y, label, withIcon) {
   `;
 }
 
-function contextMenuScreenshot(width, height) {
+function readmeHero(width, height) {
   return `
-    ${browserWindow(74, 70, 850, 560, { title: "Helpful article about browser windows" })}
-    ${text({ value: "Right-click any supported target", x: 120, y: 235, size: 34, weight: 800 })}
-    ${text({ value: "Choose “Open in Basic Window” from the context menu.", x: 120, y: 282, size: 23, fill: palette.slate })}
-    <a>
-      ${roundedRect(120, 335, 430, 74, 16, "#EFF6FF", "#93C5FD", 2)}
-      ${text({ value: "https://example.com/reference", x: 150, y: 381, size: 24, weight: 700, fill: palette.blue })}
-    </a>
-    ${contextMenu(690, 310)}
-    ${icon(990, 96, 140)}
-    ${text({ value: "Open in Basic Window", x: 1090, y: 285, size: 42, weight: 800, anchor: "middle", maxWidth: 300, maxLines: 2, id: "context screenshot title" })}
-    ${text({ value: "Links • Media • Frames • Pages • Tabs", x: 1140, y: 385, size: 23, weight: 600, fill: palette.slate, anchor: "middle", maxWidth: 230, maxLines: 3, id: "context screenshot contexts" })}
+    <rect width="${width}" height="${height}" fill="#F8FAFC"/>
+    <rect x="0" y="0" width="${width}" height="${height}" fill="url(#heroGradient)"/>
+    <g opacity="0.42">
+      <circle cx="1460" cy="85" r="280" fill="${palette.blue}"/>
+      <circle cx="188" cy="690" r="250" fill="${palette.teal}"/>
+    </g>
+    ${roundedRect(72, 62, 1532, 596, 44, "#FFFFFF", "#D7E0EA", 2)}
+    ${icon(132, 124, 150)}
+    ${text({ value: "Open in Basic Window", x: 318, y: 174, size: 50, weight: 850, maxWidth: 570, maxLines: 1, id: "readme hero title" })}
+    ${text({ value: "Send the target you picked into a focused popup-style browser window.", x: 322, y: 224, size: 30, weight: 600, fill: palette.slate, maxWidth: 560, maxLines: 2, id: "readme hero tagline" })}
+    ${capabilityGrid(132, 374)}
+    ${heroWindowPair(910, 155)}
   `;
 }
 
-function popupResultScreenshot(width, height) {
+function capabilityGrid(x, y) {
+  const items = [
+    ["Links", palette.blue],
+    ["Images", palette.teal],
+    ["Video", palette.amber],
+    ["Audio", palette.green],
+    ["Frames", "#8B5CF6"],
+    ["Pages", "#0EA5E9"],
+    ["Tabs", "#F97316"],
+    ["Bookmarks", "#EC4899"],
+    ["Containers", "#6366F1"],
+  ];
+
+  return items
+    .map(([label, accent], index) => {
+      const col = index % 3;
+      const row = Math.floor(index / 3);
+      return capabilityPill(x + col * 245, y + row * 74, label, accent);
+    })
+    .join("");
+}
+
+function capabilityPill(x, y, label, accent) {
   return `
-    ${text({ value: "Open the target in a focused popup-style window", x: 640, y: 92, size: 43, weight: 800, anchor: "middle", maxWidth: 1110, maxLines: 1, id: "popup screenshot heading" })}
-    ${text({ value: "A minimal separate window for the selected link, media item, page, frame, or tab.", x: 640, y: 137, size: 23, fill: palette.slate, anchor: "middle", maxWidth: 900, maxLines: 2, id: "popup screenshot subheading" })}
-    ${browserWindow(92, 205, 470, 420, { title: "Original tab", url: "https://example.com" })}
-    ${browserWindow(654, 166, 530, 500, { title: "Basic popup window", url: "https://example.com/reference" })}
-    <path d="M580 405C625 405 625 405 658 405" stroke="${palette.blue}" stroke-width="10" stroke-linecap="round"/>
-    <path d="M640 377L668 405L640 433" fill="none" stroke="${palette.blue}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-    ${roundedRect(725, 300, 390, 170, 18, "#EFF6FF", "#93C5FD", 2)}
-    ${icon(755, 332, 82)}
-    ${text({ value: "Focused popup", x: 860, y: 362, size: 28, weight: 800, maxWidth: 235, maxLines: 1, id: "popup card title" })}
-    ${text({ value: "No new normal tab required", x: 860, y: 403, size: 21, fill: palette.slate, maxWidth: 225, maxLines: 2, id: "popup card body" })}
+    ${roundedRect(x, y, 210, 52, 26, "#FFFFFF", "#CBD5E1", 2)}
+    <circle cx="${x + 31}" cy="${y + 26}" r="13" fill="${accent}"/>
+    ${text({ value: label, x: x + 56, y: y + 34, size: 23, weight: 800, fill: palette.ink, maxWidth: 130, maxLines: 1, id: `readme capability ${label}` })}
   `;
 }
 
-function firefoxBookmarkScreenshot(width, height) {
+function heroWindowPair(x, y) {
   return `
-    ${text({ value: "Firefox-ready bookmark and container support", x: 640, y: 90, size: 43, weight: 800, anchor: "middle", maxWidth: 1060, maxLines: 1, id: "firefox screenshot heading" })}
-    ${text({ value: "Open supported bookmarks and preserve container identity when Firefox exposes it.", x: 640, y: 136, size: 23, fill: palette.slate, anchor: "middle", maxWidth: 860, maxLines: 2, id: "firefox screenshot subheading" })}
-    ${roundedRect(110, 205, 455, 420, 24, "#FFFFFF", "#E2E8F0", 2)}
-    ${text({ value: "Bookmarks", x: 160, y: 275, size: 34, weight: 800 })}
-    ${bookmarkRow(160, 330, "Project docs", "https://example.com/docs", true)}
-    ${bookmarkRow(160, 410, "Reference page", "https://example.com/reference", false)}
-    ${bookmarkRow(160, 490, "Release checklist", "https://example.com/release", false)}
-    ${contextMenu(410, 355)}
-    ${roundedRect(820, 260, 330, 220, 24, "#FFFFFF", "#E2E8F0", 2)}
-    ${text({ value: "Container preserved", x: 985, y: 325, size: 31, weight: 800, anchor: "middle" })}
-    <circle cx="985" cy="390" r="44" fill="#E0E7FF" stroke="${palette.blue}" stroke-width="5"/>
-    ${text({ value: "Work", x: 985, y: 400, size: 25, weight: 800, fill: palette.blue, anchor: "middle" })}
-    ${text({ value: "Firefox contextual identity", x: 985, y: 445, size: 18, fill: palette.slate, anchor: "middle" })}
-  `;
-}
-
-function bookmarkRow(x, y, title, url, selected) {
-  return `
-    ${selected ? roundedRect(x - 18, y - 34, 360, 62, 14, "#EFF6FF", "#93C5FD", 2) : ""}
-    <circle cx="${x}" cy="${y - 10}" r="11" fill="${selected ? palette.blue : "#CBD5E1"}"/>
-    ${text({ value: title, x: x + 28, y: y - 12, size: 20, weight: 700 })}
-    ${text({ value: url, x: x + 28, y: y + 14, size: 14, fill: palette.muted })}
-  `;
-}
-
-function privacyScreenshot(width, height) {
-  return `
-    ${icon(105, 105, 150)}
-    ${text({ value: "Local-only by design", x: 300, y: 155, size: 48, weight: 850 })}
-    ${text({ value: "Open in Basic Window does not collect, transmit, sell, track, or analyze user data.", x: 302, y: 208, size: 25, fill: palette.slate, maxWidth: 720, maxLines: 2, id: "privacy hero body" })}
-    ${privacyCard(135, 330, "No analytics", "No tracking scripts, telemetry, or advertising identifiers.", palette.blue)}
-    ${privacyCard(475, 330, "No servers", "Selected URLs are used locally only to open the popup window.", palette.teal)}
-    ${privacyCard(815, 330, "No data sale", "No data is collected, shared, sold, or sent to third parties.", palette.amber)}
-    ${roundedRect(250, 610, 780, 70, 35, "#FFFFFF", "#BFDBFE", 2)}
-    ${text({ value: "Permissions are used only for context menus, target resolution, popup windows, and Firefox-only bookmarks/containers.", x: 640, y: 640, size: 21, weight: 650, fill: palette.blueDark, anchor: "middle", maxWidth: 700, maxHeight: 54, maxLines: 2, id: "privacy permission pill" })}
-  `;
-}
-
-function privacyCard(x, y, title, body, accent) {
-  return `
+    <g filter="url(#softShadow)">
+      ${roundedRect(x, y, 380, 305, 24, "#FFFFFF", "#D7E0EA", 2)}
+      ${roundedRect(x, y, 380, 55, 24, "#F1F5F9")}
+      <path d="M${x} ${y + 55}H${x + 380}" stroke="#D7E0EA" stroke-width="2"/>
+      <circle cx="${x + 28}" cy="${y + 28}" r="7" fill="#EF4444"/>
+      <circle cx="${x + 52}" cy="${y + 28}" r="7" fill="#F59E0B"/>
+      <circle cx="${x + 76}" cy="${y + 28}" r="7" fill="#22C55E"/>
+      ${roundedRect(x + 38, y + 92, 205, 34, 17, "#EFF6FF", "#93C5FD", 2)}
+      ${text({ value: "Selected target", x: x + 58, y: y + 116, size: 18, weight: 800, fill: palette.blueDark })}
+      ${contextMenu(x + 86, y + 142)}
+    </g>
+    <path d="M${x + 322} ${y + 318}C${x + 378} ${y + 382} ${x + 420} ${y + 382} ${x + 468} ${y + 318}" stroke="${palette.blue}" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M${x + 442} ${y + 313}L${x + 472} ${y + 318}L${x + 450} ${y + 339}" fill="none" stroke="${palette.blue}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
     <g filter="url(#cardShadow)">
-      ${roundedRect(x, y, 295, 205, 24, "#FFFFFF", "#E2E8F0", 2)}
-      <circle cx="${x + 52}" cy="${y + 56}" r="22" fill="${accent}"/>
-      <path d="M${x + 42} ${y + 56}L${x + 50} ${y + 64}L${x + 66} ${y + 45}" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      ${text({ value: title, x: x + 32, y: y + 110, size: 27, weight: 800 })}
-      ${text({ value: body, x: x + 32, y: y + 145, size: 17, fill: palette.slate, maxWidth: 225, maxHeight: 60, maxLines: 3, id: `privacy card ${title}` })}
+      ${roundedRect(x + 400, y + 250, 332, 240, 28, "#FFFFFF", "#D7E0EA", 2)}
+      ${roundedRect(x + 400, y + 250, 332, 52, 28, "#F1F5F9")}
+      <path d="M${x + 400} ${y + 302}H${x + 732}" stroke="#D7E0EA" stroke-width="2"/>
+      ${icon(x + 432, y + 334, 78)}
+      ${text({ value: "Focused popup", x: x + 532, y: y + 363, size: 28, weight: 850, maxWidth: 170, maxLines: 1, id: "readme popup title" })}
+      ${text({ value: "A cleaner place for the thing you opened.", x: x + 532, y: y + 405, size: 20, weight: 600, fill: palette.slate, maxWidth: 175, maxLines: 2, id: "readme popup body" })}
     </g>
   `;
 }

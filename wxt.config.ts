@@ -21,6 +21,7 @@ export default defineConfig({
       ? {
           browser_specific_settings: {
             gecko: {
+              id: "open-in-basic-window@ryan.thaut.me",
               data_collection_permissions: {
                 required: ["none"],
               },
