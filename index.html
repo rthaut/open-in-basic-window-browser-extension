@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Open in Basic Window</title>
+    <meta
+      name="description"
+      content="Open links, media, tabs, frames, and pages in a focused popup-style browser window."
+    >
+    <meta property="og:title" content="Open in Basic Window">
+    <meta
+      property="og:description"
+      content="A simple browser extension for opening the thing you clicked in a focused popup-style window."
+    >
+    <meta property="og:type" content="website">
+    <meta
+      property="og:url"
+      content="https://rthaut.github.io/open-in-basic-window-browser-extension/"
+    >
+    <meta
+      property="og:image"
+      content="https://rthaut.github.io/open-in-basic-window-browser-extension/assets/readme/hero-1676x720.png"
+    >
+    <link rel="icon" href="public/icon-128.png">
+    <link rel="stylesheet" href="assets/site/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Open in Basic Window home">
+        <img src="public/icon-48.png" alt="">
+        <span>Open in Basic Window</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#privacy">Privacy</a>
+        <a href="https://github.com/rthaut/open-in-basic-window-browser-extension">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Browser extension for Chrome, Edge, and Firefox</p>
+          <h1 id="hero-title">Pop links, media, and tabs into a focused window.</h1>
+          <p class="hero-text">
+            Send links, media, tabs, frames, pages, and supported Firefox bookmarks into a
+            basic window without rearranging your whole browser session.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="https://github.com/rthaut/open-in-basic-window-browser-extension">
+              View on GitHub
+            </a>
+            <a class="button secondary" href="#screenshots">See it in action</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img
+            src="assets/readme/hero-1676x720.png"
+            alt="Open in Basic Window opening browser content in focused popup-style windows."
+          >
+        </div>
+      </section>
+
+      <section class="feature-band" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="eyebrow">Why it helps</p>
+          <h2 id="features-title">A right-click escape hatch for crowded browser work.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <h3>Keep references visible</h3>
+            <p>Pop a page, link, or tab into a separate basic window so it can sit beside your work.</p>
+          </article>
+          <article>
+            <h3>Pull media out cleanly</h3>
+            <p>Open images, video, and audio in a focused window when a full browser tab feels too heavy.</p>
+          </article>
+          <article>
+            <h3>Stay local and simple</h3>
+            <p>The extension uses browser APIs only. There is no tracking, analytics, or data collection.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="support-section" aria-labelledby="support-title">
+        <div class="support-copy">
+          <p class="eyebrow">Supported contexts</p>
+          <h2 id="support-title">Open the web content you already work with.</h2>
+          <p>
+            Open in Basic Window adds one focused action to the places browser context
+            menus already appear, then sends the selected target to a basic popup-style
+            window.
+          </p>
+          <div class="support-example">
+            <span>Common flow</span>
+            <p>Right-click a link, image, tab, frame, or page. Choose the extension action. Keep the result beside your current work.</p>
+          </div>
+        </div>
+        <div class="support-panel" aria-label="Supported contexts by browser">
+          <div class="support-row support-row--header">
+            <span>Context</span>
+            <span>Chrome</span>
+            <span>Edge</span>
+            <span>Firefox</span>
+          </div>
+          <div class="support-row">
+            <span>Links, pages, and frames</span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+          </div>
+          <div class="support-row">
+            <span>Images, video, and audio</span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+          </div>
+          <div class="support-row">
+            <span>Current tabs</span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+          </div>
+          <div class="support-row">
+            <span>Bookmarks</span>
+            <span class="support-status support-status--no" aria-label="Not supported"></span>
+            <span class="support-status support-status--no" aria-label="Not supported"></span>
+            <span class="support-status support-status--yes" aria-label="Supported"></span>
+          </div>
+          <div class="support-row">
+            <span>Container identity</span>
+            <span class="support-status support-status--no" aria-label="Not supported"></span>
+            <span class="support-status support-status--no" aria-label="Not supported"></span>
+            <span class="support-status support-status--partial">When available</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="screenshots-section" id="screenshots" aria-labelledby="screenshots-title">
+        <div class="section-heading">
+          <p class="eyebrow">Screenshots</p>
+          <h2 id="screenshots-title">Small action, cleaner workspace.</h2>
+        </div>
+        <div class="screenshot-grid">
+          <figure>
+            <button
+              class="screenshot-button"
+              type="button"
+              data-full-image="assets/store/screenshots/chrome/01-chrome-link-1280x800.png"
+              data-caption="Open a link from the context menu."
+              aria-label="Open screenshot: Open a link from the context menu."
+            >
+              <img
+                src="assets/store/screenshots/chrome/01-chrome-link-1280x800.png"
+                alt="Chrome context menu showing the Open Link in Basic Window action."
+              >
+            </button>
+            <figcaption>Open a link from the context menu.</figcaption>
+          </figure>
+          <figure>
+            <button
+              class="screenshot-button"
+              type="button"
+              data-full-image="assets/store/screenshots/chrome/02-chrome-popup-window.png"
+              data-caption="Keep the result in a focused basic window."
+              aria-label="Open screenshot: Keep the result in a focused basic window."
+            >
+              <img
+                src="assets/store/screenshots/chrome/02-chrome-popup-window.png"
+                alt="A Chrome popup-style basic window opened by the extension."
+              >
+            </button>
+            <figcaption>Keep the result in a focused basic window.</figcaption>
+          </figure>
+          <figure>
+            <button
+              class="screenshot-button"
+              type="button"
+              data-full-image="assets/store/screenshots/firefox/05-firefox-bookmark-1280x800.png"
+              data-caption="Use Firefox-only bookmark support where available."
+              aria-label="Open screenshot: Use Firefox-only bookmark support where available."
+            >
+              <img
+                src="assets/store/screenshots/firefox/05-firefox-bookmark-1280x800.png"
+                alt="Firefox bookmark context menu showing the extension action."
+              >
+            </button>
+            <figcaption>Use Firefox-only bookmark support where available.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="privacy-band" id="privacy" aria-labelledby="privacy-title">
+        <div>
+          <p class="eyebrow">Privacy</p>
+          <h2 id="privacy-title">No accounts. No analytics. No collection.</h2>
+          <p>
+            Everything happens locally in your browser through extension APIs. Open in Basic
+            Window does not collect, store, transmit, or sell user data.
+          </p>
+        </div>
+        <a class="button secondary" href="PRIVACY.md">Read the privacy policy</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Open in Basic Window</span>
+      <a href="https://github.com/rthaut/open-in-basic-window-browser-extension">Source on GitHub</a>
+    </footer>
+
+    <div class="image-modal" id="image-modal" hidden>
+      <div class="image-modal__backdrop" data-close-modal></div>
+      <div
+        class="image-modal__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="image-modal-title"
+      >
+        <div class="image-modal__bar">
+          <p id="image-modal-title">Screenshot preview</p>
+          <div class="image-modal__actions">
+            <a id="image-modal-link" href="#" target="_blank" rel="noopener">Open image</a>
+            <button type="button" data-close-modal aria-label="Close screenshot preview">Close</button>
+          </div>
+        </div>
+        <div class="image-modal__viewport">
+          <img id="image-modal-img" src="" alt="">
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/site/site.js"></script>
+  </body>
+</html>
