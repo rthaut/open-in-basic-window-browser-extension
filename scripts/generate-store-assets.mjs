@@ -6,8 +6,8 @@ const ROOT = resolve(".");
 const STORE_DIR = resolve(ROOT, "assets/store");
 const SOURCE_DIR = resolve(STORE_DIR, "source");
 const PROMO_DIR = resolve(STORE_DIR, "promo");
-const README_DIR = resolve(ROOT, "assets/readme");
-const README_SOURCE_DIR = resolve(README_DIR, "source");
+const README_DIR = resolve(ROOT, "docs/media/readme");
+const README_SOURCE_DIR = resolve(ROOT, "assets/readme/source");
 
 const iconSource = await readFile(resolve(ROOT, "assets/icon.svg"), "utf8");
 const iconBody = iconSource

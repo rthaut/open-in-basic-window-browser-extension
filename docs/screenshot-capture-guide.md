@@ -274,7 +274,7 @@ If the store allows designed screenshots, you can combine literal captures with 
 7. Stage the context menu or popup window.
 8. Capture the screenshot as PNG.
 9. Crop/export to final dimensions if needed.
-10. Save final PNGs in the appropriate browser-specific folder under `assets/store/screenshots/`.
+10. Save final PNGs in the appropriate browser-specific folder under `docs/media/screenshots/`.
 11. Keep any source files or raw captures outside the generated asset source tree.
 12. Verify the screenshot at thumbnail size.
 
@@ -337,4 +337,4 @@ The generated assets in `assets/store/` are useful for promo images when:
 - You need polished promotional images in exact dimensions.
 - You want a privacy or feature-summary image that is clearer than raw browser UI.
 
-Do not use generated images as store screenshots. Use real screenshots when showing extension behavior, native context menus, popup windows, bookmarks, or browser-specific UI.
+Do not use generated images as store screenshots. Use real screenshots when showing extension behavior, native context menus, popup windows, bookmarks, or browser-specific UI, and keep those captured screenshots in `docs/media/screenshots/`.
