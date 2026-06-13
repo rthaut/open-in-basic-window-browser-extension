@@ -1,5 +1,7 @@
 # Open in Basic Window
 
+[![Chrome Web Store][chrome-image-store]][chrome-url] [![Microsoft Edge Add-ons][edge-image-store]][edge-url] [![Firefox Add-ons][firefox-image-store]][firefox-url]
+
 <img src="docs/media/readme/hero-1676x720.png" alt="Open in Basic Window can open links, images, video, audio, frames, pages, tabs, bookmarks, and containers in a focused popup-style browser window." width="838">
 
 Open in Basic Window gives your right-click menu a simple escape hatch: send the thing you selected into a focused popup-style browser window instead of another normal tab.
@@ -69,3 +71,12 @@ npm run zip:firefox
 ```
 
 Generated WXT files are written to `.wxt/`, and build artifacts are written to `.output/`. Both directories are intentionally ignored by git.
+
+[chrome-url]: https://chromewebstore.google.com/detail/open-in-basic-window/kplohddcajpgkdgdnjgkcaddmcdihbjn
+[chrome-image-store]: https://img.shields.io/badge/Chrome%20Web%20Store-store-4285f4?logo=googlechrome&style=for-the-badge
+
+[edge-url]: https://microsoftedge.microsoft.com/addons/detail/open-in-basic-window/lgjbddojadnfkmodoggeiceipknajjgj
+[edge-image-store]: https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-store-0078d7?logo=microsoftedge&style=for-the-badge
+
+[firefox-url]: https://addons.mozilla.org/firefox/addon/open-in-basic-window/
+[firefox-image-store]: https://img.shields.io/badge/Firefox%20Add--ons-store-ff7139?logo=firefox&style=for-the-badge
