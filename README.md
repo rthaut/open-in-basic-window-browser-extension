@@ -1,6 +1,6 @@
 # Open in Basic Window
 
-<img src="assets/readme/hero-1676x720.png" alt="Open in Basic Window can open links, images, video, audio, frames, pages, tabs, bookmarks, and containers in a focused popup-style browser window." width="838">
+<img src="docs/media/readme/hero-1676x720.png" alt="Open in Basic Window can open links, images, video, audio, frames, pages, tabs, bookmarks, and containers in a focused popup-style browser window." width="838">
 
 Open in Basic Window gives your right-click menu a simple escape hatch: send the thing you selected into a focused popup-style browser window instead of another normal tab.
 
