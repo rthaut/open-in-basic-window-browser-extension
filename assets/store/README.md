@@ -30,7 +30,7 @@ Related capture workflow:
 
 ## Screenshot Guidance
 
-Screenshots should be real browser captures stored under browser-specific folders in `screenshots/`. They should show actual extension behavior:
+Screenshots should be real browser captures stored under browser-specific folders in `docs/media/screenshots/`. They should show actual extension behavior:
 
 - Context menu with the extension action; literal captures should show the target-specific "Open [Target] in Basic Window" item.
 - Resulting popup-style browser window.
@@ -43,23 +43,23 @@ Keep captured screenshots in browser-specific folders so future releases can upd
 
 Chrome:
 
-- `screenshots/chrome/01-chrome-link-1280x800.png`
-- `screenshots/chrome/02-chrome-popup-window.png`
-- `screenshots/chrome/03-chrome-image-1280x800.png`
+- `docs/media/screenshots/chrome/01-chrome-link-1280x800.png`
+- `docs/media/screenshots/chrome/02-chrome-popup-window.png`
+- `docs/media/screenshots/chrome/03-chrome-image-1280x800.png`
 
 Microsoft Edge:
 
-- `screenshots/edge/01-edge-link-1280x800.png`
-- `screenshots/edge/02-edge-popup-window-result.png`
-- `screenshots/edge/03-edge-image-1280x800.png`
+- `docs/media/screenshots/edge/01-edge-link-1280x800.png`
+- `docs/media/screenshots/edge/02-edge-popup-window-result.png`
+- `docs/media/screenshots/edge/03-edge-image-1280x800.png`
 
 Firefox:
 
-- `screenshots/firefox/01-firefox-link-1280x800.png`
-- `screenshots/firefox/02-firefox-popup-window-result.png`
-- `screenshots/firefox/03-firefox-image-1280x800.png`
-- `screenshots/firefox/04-firefox-tab-1280x800.png`
-- `screenshots/firefox/05-firefox-bookmark-1280x800.png`
+- `docs/media/screenshots/firefox/01-firefox-link-1280x800.png`
+- `docs/media/screenshots/firefox/02-firefox-popup-window-result.png`
+- `docs/media/screenshots/firefox/03-firefox-image-1280x800.png`
+- `docs/media/screenshots/firefox/04-firefox-tab-1280x800.png`
+- `docs/media/screenshots/firefox/05-firefox-bookmark-1280x800.png`
 
 ## Generated Asset Pack
 
@@ -74,11 +74,12 @@ Promotional images:
 
 Chrome and Edge promotional images should describe link, media, tab, frame, and page support only. Firefox promotional images may also mention bookmarks and container-aware popup behavior.
 
-Editable SVG sources are stored under `source/` with matching names.
+Editable store SVG sources are stored under `source/` with matching names. The README hero SVG source is stored separately under `../readme/source/`.
 
 ## Notes
 
-- Promo images and the README hero are polished generated assets built from the extension's real icon and documented behavior.
+- Promo images in `assets/store/` and the README hero in `docs/media/readme/` are polished generated assets built from the extension's real icon and documented behavior.
+- Generator-only source materials stay under `assets/` so `docs/` only contains published artifacts.
 - Store screenshots should be captured from real browser UI rather than generated.
 - Re-run `npm run generate:store-assets` after changing the icon, listing copy, or asset layout script.
 - The generator wraps and scales annotated text blocks to avoid obvious text overflow. Use `npm run check:store-assets` after copy or layout changes.
