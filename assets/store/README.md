@@ -19,14 +19,25 @@ Related capture workflow:
 - For literal browser screenshots, follow [`docs/screenshot-capture-guide.md`](../../docs/screenshot-capture-guide.md).
 - For the local screenshot fixture used by that guide, run `npm run serve:screenshot-demo`.
 
-## Required Before Submission
+## Public Listings
 
-- Chrome Web Store screenshots.
-- Chrome Web Store promotional images, if required by the listing flow.
-- Microsoft Edge Add-ons screenshots.
-- Microsoft Edge Add-ons promotional images, if required by the listing flow.
-- Firefox Add-ons screenshots.
-- Firefox Add-ons listing images, if used.
+Verified published on June 22, 2026:
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/open-in-basic-window/kplohddcajpgkdgdnjgkcaddmcdihbjn) for version 1.0.0.
+- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/open-in-basic-window/lgjbddojadnfkmodoggeiceipknajjgj).
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/open-in-basic-window/) for version 1.0.0.
+
+## Submission Checklist
+
+- [x] Chrome Web Store screenshots.
+- [x] Chrome Web Store promotional images.
+- [x] Chrome Web Store listing published.
+- [x] Microsoft Edge Add-ons screenshots.
+- [x] Microsoft Edge Add-ons promotional images.
+- [x] Microsoft Edge Add-ons listing published.
+- [x] Firefox Add-ons screenshots.
+- [x] Firefox Add-ons listing images.
+- [x] Firefox Add-ons listing published.
 
 ## Screenshot Guidance
 
