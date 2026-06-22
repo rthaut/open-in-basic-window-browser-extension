@@ -7,6 +7,7 @@ All notable user-facing changes to Open in Basic Window are documented here.
 ### Added
 
 - Initial Chrome, Edge, and Firefox release.
+- Published store listings for Chrome Web Store, Microsoft Edge Add-ons, and Firefox Add-ons.
 - Context-menu action for opening links, images, videos, audio, frames, pages, and tabs in a focused popup-style browser window.
 - Firefox bookmark context-menu support.
 - Firefox contextual identity preservation when opening supported targets from container tabs.
