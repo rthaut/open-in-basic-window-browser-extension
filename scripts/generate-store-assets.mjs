@@ -54,28 +54,31 @@ const assets = [
     path: "promo/chrome-marquee-1400x560",
     width: 1400,
     height: 560,
-    svg: (w, h) => marqueePromo(w, h, "Chrome Web Store", palette.blue, {
-      supportsBookmarks: false,
-      supportsContainers: false,
-    }),
+    svg: (w, h) =>
+      marqueePromo(w, h, "Chrome Web Store", palette.blue, {
+        supportsBookmarks: false,
+        supportsContainers: false,
+      }),
   },
   {
     path: "promo/edge-marquee-1400x560",
     width: 1400,
     height: 560,
-    svg: (w, h) => marqueePromo(w, h, "Microsoft Edge Add-ons", palette.teal, {
-      supportsBookmarks: false,
-      supportsContainers: false,
-    }),
+    svg: (w, h) =>
+      marqueePromo(w, h, "Microsoft Edge Add-ons", palette.teal, {
+        supportsBookmarks: false,
+        supportsContainers: false,
+      }),
   },
   {
     path: "promo/firefox-marquee-1400x560",
     width: 1400,
     height: 560,
-    svg: (w, h) => marqueePromo(w, h, "Firefox Add-ons", palette.amber, {
-      supportsBookmarks: true,
-      supportsContainers: true,
-    }),
+    svg: (w, h) =>
+      marqueePromo(w, h, "Firefox Add-ons", palette.amber, {
+        supportsBookmarks: true,
+        supportsContainers: true,
+      }),
   },
   {
     path: "hero-1676x720",
@@ -90,8 +93,15 @@ const assets = [
 await Promise.all([SOURCE_DIR, PROMO_DIR, README_SOURCE_DIR].map(ensureDir));
 
 for (const asset of assets) {
-  const svg = baseSvg(asset.width, asset.height, asset.svg(asset.width, asset.height));
-  const sourcePath = resolve(asset.sourceDir ?? SOURCE_DIR, `${asset.path}.svg`);
+  const svg = baseSvg(
+    asset.width,
+    asset.height,
+    asset.svg(asset.width, asset.height),
+  );
+  const sourcePath = resolve(
+    asset.sourceDir ?? SOURCE_DIR,
+    `${asset.path}.svg`,
+  );
   const pngPath = resolve(asset.outputDir ?? STORE_DIR, `${asset.path}.png`);
 
   await ensureDir(dirname(sourcePath));
@@ -100,7 +110,9 @@ for (const asset of assets) {
   await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toFile(pngPath);
 }
 
-console.log(`Generated ${assets.length} assets in ${STORE_DIR} and ${README_DIR}`);
+console.log(
+  `Generated ${assets.length} assets in ${STORE_DIR} and ${README_DIR}`,
+);
 if (fitWarnings.length) {
   console.warn(`Text fit warnings (${fitWarnings.length}):`);
   for (const warning of fitWarnings) console.warn(`- ${warning}`);
@@ -175,7 +187,9 @@ function text({
       ((maxLines && lines.length > maxLines) ||
         (maxHeight && lines.length * finalSize * lineHeight > maxHeight) ||
         (maxWidth &&
-          lines.some((line) => estimateTextWidth(line, finalSize, weight) > maxWidth)))
+          lines.some(
+            (line) => estimateTextWidth(line, finalSize, weight) > maxWidth,
+          )))
     ) {
       finalSize -= 1;
       lines = maxWidth
@@ -276,7 +290,16 @@ function escapeXml(value) {
     .replace(/"/g, "&quot;");
 }
 
-function roundedRect(x, y, width, height, radius, fill, stroke = "none", strokeWidth = 0) {
+function roundedRect(
+  x,
+  y,
+  width,
+  height,
+  radius,
+  fill,
+  stroke = "none",
+  strokeWidth = 0,
+) {
   return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"/>`;
 }
 
@@ -397,9 +420,10 @@ function marqueePromo(
   accent,
   { supportsBookmarks, supportsContainers },
 ) {
-  const body = supportsBookmarks && supportsContainers
-    ? "Open links, media, tabs, frames, pages, and bookmarks, with Firefox container support."
-    : "Open links, media, tabs, frames, and pages in a basic popup window.";
+  const body =
+    supportsBookmarks && supportsContainers
+      ? "Open links, media, tabs, frames, pages, and bookmarks, with Firefox container support."
+      : "Open links, media, tabs, frames, and pages in a basic popup window.";
 
   return `
     <rect width="${width}" height="${height}" fill="#0F172A"/>

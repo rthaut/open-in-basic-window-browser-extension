@@ -155,7 +155,9 @@ export async function getTargetUrl(
     case "tab":
       return tab?.url;
     default:
-      return info.linkUrl ?? info.srcUrl ?? info.frameUrl ?? tab?.url ?? info.pageUrl;
+      return (
+        info.linkUrl ?? info.srcUrl ?? info.frameUrl ?? tab?.url ?? info.pageUrl
+      );
   }
 }
 
@@ -167,7 +169,9 @@ export async function getCookieStoreId(
   if (!tab?.id || info.bookmarkId) return undefined;
 
   try {
-    const sourceTab = (await browserApi.tabs.get(tab.id)) as TabWithCookieStoreId;
+    const sourceTab = (await browserApi.tabs.get(
+      tab.id,
+    )) as TabWithCookieStoreId;
     return sourceTab.cookieStoreId;
   } catch {
     return undefined;

@@ -74,9 +74,7 @@ Generated WXT files are written to `.wxt/`, and build artifacts are written to `
 
 [chrome-url]: https://chromewebstore.google.com/detail/open-in-basic-window/kplohddcajpgkdgdnjgkcaddmcdihbjn
 [chrome-image-store]: https://img.shields.io/badge/Chrome%20Web%20Store-store-4285f4?logo=googlechrome&style=for-the-badge
-
 [edge-url]: https://microsoftedge.microsoft.com/addons/detail/open-in-basic-window/lgjbddojadnfkmodoggeiceipknajjgj
 [edge-image-store]: https://img.shields.io/badge/Microsoft%20Edge%20Add--ons-store-0078d7?logo=microsoftedge&style=for-the-badge
-
 [firefox-url]: https://addons.mozilla.org/firefox/addon/open-in-basic-window/
 [firefox-image-store]: https://img.shields.io/badge/Firefox%20Add--ons-store-ff7139?logo=firefox&style=for-the-badge
