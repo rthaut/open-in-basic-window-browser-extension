@@ -4,7 +4,7 @@ import { generateIcons } from "./scripts/generate-icons.mjs";
 export default defineConfig({
   manifestVersion: 3,
   hooks: {
-    "build:before": () => generateIcons(),
+    "build:before": () => generateIcons({ check: true }),
   },
   manifest: ({ browser }) => ({
     name: "__MSG_extensionName__",
