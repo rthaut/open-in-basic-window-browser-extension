@@ -29,6 +29,7 @@
     "dev:edge": "wxt --browser edge",
     "dev:firefox": "wxt --browser firefox",
     "generate:icons": "node scripts/generate-icons.mjs",
+    "check:icons": "node scripts/generate-icons.mjs --check",
     "generate:store-assets": "node scripts/generate-store-assets.mjs",
     "check:store-assets": "node scripts/generate-store-assets.mjs --check",
     "serve:screenshot-demo": "node scripts/serve-screenshot-demo.mjs",
