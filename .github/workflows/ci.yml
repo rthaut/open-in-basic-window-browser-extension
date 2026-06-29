@@ -27,6 +27,30 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Format source
+        run: npm run format:source:check
+
+      - name: Format docs
+        run: npm run format:docs:check
+
+      - name: Format scripts
+        run: npm run format:scripts:check
+
+      - name: Format actions
+        run: npm run format:actions:check
+
+      - name: Lint source
+        run: npm run lint:source
+
+      - name: Lint docs
+        run: npm run lint:docs
+
+      - name: Lint scripts
+        run: npm run lint:scripts
+
+      - name: Lint actions
+        run: npm run lint:actions
+
       - name: Type-check
         run: npm run compile
 

@@ -43,8 +43,9 @@ function createBrowserApi(overrides: Partial<BrowserApi> = {}): BrowserApi {
     },
     contextMenus: createMenuApi(),
     i18n: {
-      getMessage: vi.fn((key: string, substitution?: string) =>
-        messages[key]?.replace("$TARGET$", substitution ?? "") ?? "",
+      getMessage: vi.fn(
+        (key: string, substitution?: string) =>
+          messages[key]?.replace("$TARGET$", substitution ?? "") ?? "",
       ),
     },
     runtime: {
