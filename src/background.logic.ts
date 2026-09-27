@@ -148,7 +148,7 @@ export async function getTargetUrl(
     case "bookmark": {
       if (!info.bookmarkId) return undefined;
       const [bookmark] = await browserApi.bookmarks.get(info.bookmarkId);
-      return bookmark.url;
+      return bookmark?.url;
     }
     case "page":
       return info.pageUrl;
