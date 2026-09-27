@@ -178,6 +178,19 @@ describe("background logic", () => {
     ).resolves.toBe("https://page.example/");
   });
 
+  it("returns no target URL when the bookmark lookup is empty", async () => {
+    const browserApi = createBrowserApi({
+      bookmarks: { get: vi.fn().mockResolvedValue([]) },
+    });
+
+    await expect(
+      getTargetUrl(browserApi, {
+        menuItemId: getMenuItemId("bookmark"),
+        bookmarkId: "missing",
+      }),
+    ).resolves.toBeUndefined();
+  });
+
   it("opens supported URLs in focused popup windows", async () => {
     const browserApi = createBrowserApi();
 
