@@ -65,11 +65,11 @@
     "github-actionlint": "^1.7.12",
     "globals": "^17.13.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "sharp": "^0.35.5",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.1",
-    "vitest": "^5.0.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.4",
     "wxt": "^0.21.4"
   },
   "overrides": {
